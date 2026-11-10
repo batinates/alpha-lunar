@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/components/moonscene.tsx","./src/components/southpolescene.tsx","./src/data/lunarfeatures.ts","./src/domain/lunar.ts","./src/lib/labeltexture.ts","./src/lib/lunarcoordinates.ts","./src/lib/proceduralmoon.ts","./src/services/science/datasourceregistry.ts"],"version":"5.9.3"}
