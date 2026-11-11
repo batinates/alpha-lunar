@@ -18,4 +18,4 @@ export interface Coordinates {
 }
 
 export type ExplorerMode = 'global' | 'south-pole'
-export type SurfaceStyle = 'surface' | 'relief'
+export type SurfaceStyle = 'surface' | 'relief' | 'elevation'

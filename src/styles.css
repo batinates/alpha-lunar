@@ -266,3 +266,60 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 1px solid 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+/* Phase 2: a quieter, larger canvas for the photographic lunar atlas. */
+.app-shell::after { display:none; }
+.viewport::before { background:linear-gradient(0deg,rgba(3,7,11,.8),transparent 36%),radial-gradient(ellipse at center,transparent 52%,rgba(3,7,11,.28)); }
+.scene-heading { top:28px; left:30px; }
+.scene-heading h1 { font-size:30px; font-weight:500; letter-spacing:-.04em; margin:10px 0 8px; }
+.scene-heading p { font-size:10px; color:#7b8b96; }
+.eyebrow { font-size:8px; color:#92a6b1; letter-spacing:.18em; }
+.mode-switch { top:auto; bottom:168px; left:30px; transform:none; }
+.mode-switch button { font-size:9px; height:32px; }
+.surface-caption { position:absolute; z-index:6; left:30px; bottom:88px; pointer-events:none; display:flex; flex-direction:column; gap:7px; }
+.surface-caption>span { font:500 8px var(--mono); letter-spacing:.14em; color:#597580; }
+.surface-caption>strong { font-size:20px; letter-spacing:-.035em; font-weight:500; color:#c2cdd2; }
+.surface-caption>small { font:400 9px var(--mono); color:#75858f; }
+.view-controls { position:absolute; z-index:7; left:30px; right:30px; bottom:18px; min-height:54px; display:flex; align-items:center; flex-wrap:wrap; column-gap:22px; row-gap:8px; padding:12px 14px; border:1px solid #213039; background:rgba(7,13,18,.9); }
+.view-controls label { display:flex; align-items:center; gap:12px; }
+.view-controls label span { color:#9cacb6; font:500 8px var(--mono); letter-spacing:.06em; }
+.view-controls input { width:100px; height:3px; accent-color:#9fd6df; cursor:pointer; }
+.view-controls output { color:#d2dadd; font:500 10px var(--mono); min-width:28px; }
+.view-controls select { border:1px solid #34454e; color:#c3d4dc; background:#0a151d; font:500 10px var(--mono); padding:5px; }
+.view-controls>small { margin-left:auto; color:#5d707b; font:400 8px var(--mono); }
+.interaction-hint { display:none; }
+.restore-left { top:76px; }
+.viewport--wide-left .scene-heading { left:60px; }
+.location-summary { font-size:12px; }
+.coordinate-block strong { font-size:12px; }
+.coordinate-block span,.panel-topline,.location-index { font-size:9px; }
+.provenance-card p { font-size:10px; }
+.provenance-card__head,.provenance-card a { font-size:8px; }
+.panel-disclaimer { font-size:9px; color:#929183; }
+.nav-module strong { font-size:12px; }
+.nav-module small { font-size:9px; }
+.future-module { color:#64727a; font-size:10px; padding-top:9px; padding-bottom:9px; }
+.coordinate-selection p { font-size:12px; }
+.regional-list strong { font-size:11px; }
+.regional-list small { font-size:9px; }
+.data-row strong { font-size:12px; }
+.data-row small { font-size:9px; line-height:1.6; }
+.integrity-note p { font-size:10px; }
+.source-links { display:flex; gap:15px; margin-top:15px; flex-wrap:wrap; }
+.source-links a { font:500 10px var(--mono); color:#84c9d7; }
+.elevation-legend {position:absolute;right:76px;bottom:106px;z-index:7;width:175px;padding:12px;background:#081018e8;border:1px solid #243640;font:500 8px var(--mono);color:#a8bac4}
+.elevation-legend i {display:block;margin-top:9px;height:6px;background:linear-gradient(90deg,#20345e,#347f91,#97b8a4,#c4ab78,#eee1c1)}
+.elevation-legend div{display:flex;justify-content:space-between;margin:5px 0 8px}.elevation-legend b{font-weight:400}.elevation-legend small{font-size:7px;line-height:1.5;color:#718591}
+@media(max-width:520px){.elevation-legend{right:14px;bottom:265px;width:145px}}
+.scene-loading,.scene-error { position:absolute; z-index:8; inset:100px 0 220px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:16px; background:#03070b; }
+.scene-loading strong,.scene-error strong { font-size:15px; font-weight:500; color:#c2d0d5; }
+.scene-loading small { font:400 10px var(--mono); color:#607c88; }
+.loading-orbit { width:48px; height:48px; border:1px solid #263e48; border-top-color:#9ed7df; border-radius:50%; animation:atlas-spin 1.4s linear infinite; }
+@keyframes atlas-spin {to{transform:rotate(360deg)}}
+.scene-error { z-index:10; text-align:center; padding:25px; }
+.scene-error button { padding:12px; border:1px solid #467380; background:#10232d; cursor:pointer; }
+.data-dialog {overflow:auto;}
+@media(min-width:1181px){.status-segment{min-width:0;gap:6px;padding:0 9px}.status-segment:nth-child(3){display:none}}
+@media(max-width:1180px){.view-controls>small{width:100%;margin-left:0}.view-controls{row-gap:10px}.surface-caption{bottom:100px}.mode-switch{bottom:185px}.status-segment:nth-child(3){display:none}}
+@media(max-width:860px){.surface-caption{left:22px}.view-controls{left:20px;right:20px}.mode-switch{left:22px;bottom:185px;transform:none}.scene-heading h1{font-size:27px}.scene-tools{top:46%}.view-controls>small{margin-left:auto;width:auto}.surface-caption{bottom:90px}.mode-switch{bottom:168px}}
+@media(max-width:520px){.surface-caption>strong{font-size:17px}.surface-caption>small{font-size:8px}.view-controls{bottom:12px}.view-controls>small{width:100%;margin:0}.view-controls label{gap:8px}.view-controls{gap:9px}.view-controls input{width:70px}.surface-caption{bottom:135px}.mode-switch{bottom:210px}.scene-heading p{font-size:9px}.scene-heading h1{font-size:24px}.topbar__actions .icon-button{width:29px}}

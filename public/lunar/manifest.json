@@ -1,0 +1,110 @@
+{
+  "version": 2,
+  "retrievedAt": "2026-11-11",
+  "credit": "NASA Scientific Visualization Studio / LRO / LOLA / LROC / PDS Geosciences Node",
+  "sources": [
+    {
+      "file": "lroc_color_poles_8k.tif",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a004700/a004720/lroc_color_poles_8k.tif",
+      "sha256": "4af8b0cd4d50c30851359d98e7e72040240dd8d03256b58b345b5b76e9edb4ef",
+      "bytes": 50641970
+    },
+    {
+      "file": "ldem_16_uint.tif",
+      "url": "https://svs.gsfc.nasa.gov/vis/a000000/a004700/a004720/ldem_16_uint.tif",
+      "sha256": "45a2b32d56e81ed30db07fead8abc842b249b6511219d9ca2c53f81bc2dc5d62",
+      "bytes": 33201026
+    },
+    {
+      "file": "ldem_85s_40m.img",
+      "url": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/polar/img/ldem_85s_40m.img",
+      "sha256": "1609e9b860748e0b9952a7239c51b37d3b2a799d35e9fc3c258526711cc1e51d",
+      "bytes": 115034112
+    },
+    {
+      "file": "ldem_85s_40m.lbl",
+      "url": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/polar/img/ldem_85s_40m.lbl",
+      "sha256": "d8105776af7fb79b1862ffa3946d013ec34f4dc6a00b7f6bff22ef8f768a5d3d",
+      "bytes": 4986
+    }
+  ],
+  "global": {
+    "width": 1440,
+    "height": 720,
+    "radiusMeters": 1737400,
+    "unit": "meter",
+    "bumpRangeMeters": [
+      -12000,
+      12000
+    ],
+    "projection": "equirectangular",
+    "bounds": [
+      -180,
+      -90,
+      180,
+      90
+    ],
+    "registration": "pixel-center",
+    "color": "NASA SVS 2019 visualization mosaic; polar albedo infill; not raw radiometry"
+  },
+  "polar": {
+    "width": 1896,
+    "height": 1896,
+    "sourceSpacingMeters": 40,
+    "spacingMeters": 160,
+    "halfExtentMeters": 151680,
+    "referenceRadiusMeters": 1737400,
+    "unit": "meter",
+    "projection": "south polar stereographic",
+    "centerLongitude": 0,
+    "frame": "MEAN EARTH/POLAR AXIS OF DE421",
+    "productVersion": "V2.0",
+    "representation": "interpolated",
+    "coverage": "85\u201390 degrees south; rectangular corner areas extend farther north",
+    "derivation": "4x4 area averaging of signed little-endian int16 samples, scaling factor 0.5; output float32 meters"
+  },
+  "limitations": [
+    "Gridded LOLA ground tracks are interpolated, not every pixel is a laser return.",
+    "Color is a visualization mosaic.",
+    "Lighting is user-controlled for inspection, not an ephemeris solution.",
+    "Terrain is displayed with explicitly selectable vertical exaggeration; no hazard or landing calculations.",
+    "Regional rendering mesh is 641x641 vertices (474m spacing); residual normals add detail from the 160m derivative."
+  ],
+  "outputs": [
+    {
+      "file": "albedo-4k.webp",
+      "bytes": 1497646,
+      "sha256": "c7552ece5bed48dbad95494523f43b33da6afaa637e7241fccb221dd73b94967"
+    },
+    {
+      "file": "albedo-8k.webp",
+      "bytes": 8061976,
+      "sha256": "fe4703439a0778f0724dbc0d53f37b30762a9f48237c95d43523c0a27d72f96a"
+    },
+    {
+      "file": "global-height.f32",
+      "bytes": 4147200,
+      "sha256": "862b8006756e3647cc1da4f7ce13433e4d4ce441fd168b56a116462cc25fcf61"
+    },
+    {
+      "file": "global-height.png",
+      "bytes": 4483904,
+      "sha256": "4d0af3e15d966bfc4648d8b21c4df62ae8d43d6dcb854836a5de9072cb9f766a"
+    },
+    {
+      "file": "ldem_85s_40m.lbl",
+      "bytes": 4986,
+      "sha256": "d8105776af7fb79b1862ffa3946d013ec34f4dc6a00b7f6bff22ef8f768a5d3d"
+    },
+    {
+      "file": "south-pole-height.f32",
+      "bytes": 14379264,
+      "sha256": "e93c5cb6f21ae356345250f1712b5d09dc7c51e9ac793cef66aa324effd52bee"
+    },
+    {
+      "file": "south-pole-normal.webp",
+      "bytes": 2642408,
+      "sha256": "dcc51cc2fc386363d2c531f19a2d070458a3d94f9c5c3523d82db9a33c69bfab"
+    }
+  ]
+}

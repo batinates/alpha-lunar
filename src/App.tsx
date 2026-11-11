@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   Aperture, Box, ChevronDown, CircleGauge, Crosshair, Database, Expand, Grid3X3,
   Info, Layers3, LocateFixed, Map, Menu, Moon, Orbit, PanelLeftClose, PanelRightClose,
@@ -6,6 +6,7 @@ import {
 } from 'lucide-react'
 import { MoonScene } from './components/MoonScene'
 import { SouthPoleScene } from './components/SouthPoleScene'
+import { SceneBoundary } from './components/SceneBoundary'
 import { LUNAR_FEATURES, SOUTH_POLE_FEATURES } from './data/lunarFeatures'
 import type { Coordinates, ExplorerMode, LunarFeature, SurfaceStyle } from './domain/lunar'
 import { formatLatitude, formatLongitude } from './lib/lunarCoordinates'
@@ -28,7 +29,7 @@ function AlphaMark() {
 
 function App() {
   const [mode, setMode] = useState<ExplorerMode>('global')
-  const [selected, setSelected] = useState<LunarFeature | null>(LUNAR_FEATURES.find((feature) => feature.id === 'copernicus') ?? null)
+  const [selected, setSelected] = useState<LunarFeature | null>(null)
   const [coordinates, setCoordinates] = useState<Coordinates>({ latitude: 9.62, longitude: -20.08 })
   const [surfaceStyle, setSurfaceStyle] = useState<SurfaceStyle>('surface')
   const [labelsVisible, setLabelsVisible] = useState(true)
@@ -38,11 +39,25 @@ function App() {
   const [leftOpen, setLeftOpen] = useState(() => window.innerWidth > 1040)
   const [rightOpen, setRightOpen] = useState(() => window.innerWidth > 1040)
   const [dataOpen, setDataOpen] = useState(false)
+  const [lightAngle, setLightAngle] = useState(38)
+  const [exaggeration, setExaggeration] = useState(2)
+  const [resetKey, setResetKey] = useState(0)
+  const [globalReady, setGlobalReady] = useState(false)
+  const [polarReady, setPolarReady] = useState(false)
+  const [polarMounted, setPolarMounted] = useState(false)
+  const readyGlobal = useCallback(() => setGlobalReady(true), [])
+  const readyPolar = useCallback(() => setPolarReady(true), [])
+  useEffect(() => {
+    const onKey = (event:KeyboardEvent) => {if(event.key==='Escape'){setSearchOpen(false);setDataOpen(false)}}
+    window.addEventListener('keydown',onKey)
+    return () => window.removeEventListener('keydown',onKey)
+  }, [])
   const viewport = useRef<HTMLDivElement>(null)
 
   const searchResults = useMemo(() => LUNAR_FEATURES.filter((feature) => feature.name.toLowerCase().includes(query.toLowerCase())), [query])
 
   function chooseFeature(feature: LunarFeature) {
+    if (mode === 'south-pole' && feature.latitude > -85) setMode('global')
     setSelected(feature)
     setCoordinates({ latitude: feature.latitude, longitude: feature.longitude })
     setSearchOpen(false)
@@ -52,7 +67,11 @@ function App() {
   function enterMode(nextMode: ExplorerMode) {
     setMode(nextMode)
     if (nextMode === 'south-pole') {
+      setPolarMounted(true)
       chooseFeature(LUNAR_FEATURES.find((feature) => feature.id === 'shackleton')!)
+    } else {
+      setSelected(null)
+      setResetKey(value=>value+1)
     }
   }
 
@@ -71,13 +90,13 @@ function App() {
             <span>ALPHA</span><strong>LUNAR</strong>
             <small>MISSION INTELLIGENCE</small>
           </div>
-          <div className="phase-badge">PHASE 01</div>
+          <div className="phase-badge">PHASE 02</div>
         </div>
         <div className="topbar__telemetry">
           <div className="telemetry-item"><span>REFERENCE FRAME</span><strong>MOON / IAU</strong></div>
           <div className="telemetry-item"><span>LATITUDE</span><strong>{formatLatitude(coordinates.latitude)}</strong></div>
           <div className="telemetry-item"><span>LONGITUDE</span><strong>{formatLongitude(coordinates.longitude)}</strong></div>
-          <div className="telemetry-item data-state"><span className="status-dot" />REFERENCE DATA READY</div>
+          <div className="telemetry-item data-state"><span className="status-dot" />NASA SURFACE ATLAS</div>
         </div>
         <div className="topbar__actions">
           <button className="icon-button" aria-label="Open location search" onClick={() => setSearchOpen(true)}><Search size={17} /></button>
@@ -111,8 +130,9 @@ function App() {
       {!leftOpen && <button className="restore-panel restore-left" onClick={() => setLeftOpen(true)} aria-label="Open navigation"><Menu size={16} /></button>}
 
       <main className={`viewport ${!leftOpen ? 'viewport--wide-left' : ''} ${!rightOpen ? 'viewport--wide-right' : ''}`}>
-        <div className={`viewport__scene scene-layer ${mode === 'global' ? 'is-active' : ''}`}>
+        <SceneBoundary><div className={`viewport__scene scene-layer ${mode === 'global' ? 'is-active' : ''}`}>
             <MoonScene
+              lightAngle={lightAngle} resetKey={resetKey} onReady={readyGlobal}
               active={mode === 'global'}
               selected={selected}
               coordinates={coordinates}
@@ -124,13 +144,14 @@ function App() {
             />
         </div>
         <div className={`viewport__scene scene-layer ${mode === 'south-pole' ? 'is-active' : ''}`}>
-          <SouthPoleScene active={mode === 'south-pole'} selected={selected} onSelect={chooseFeature} />
-        </div>
+          {polarMounted && <SouthPoleScene surfaceStyle={surfaceStyle} active={mode === 'south-pole'} selected={selected} onSelect={chooseFeature} labelsVisible={labelsVisible} lightAngle={lightAngle} exaggeration={exaggeration} resetKey={resetKey} onReady={readyPolar} onSelectCoordinates={value=>{setCoordinates(value);setSelected(null)}} />}
+        </div></SceneBoundary>
+        {!(mode==='global'?globalReady:polarReady)&&<div className="scene-loading"><span className="loading-orbit"/><strong>{mode==='global'?'Loading the lunar surface':'Loading South Pole elevation'}</strong><small>NASA / LRO · verified raster assets</small></div>}
 
         <div className="scene-heading">
           <div className="eyebrow"><span /> {mode === 'global' ? 'GLOBAL LUNAR RECONNAISSANCE' : 'REGIONAL EXPLORATION MODE'}</div>
           <h1>{mode === 'global' ? 'Lunar Explorer' : 'Lunar South Pole'}</h1>
-          <p>{mode === 'global' ? 'IAU geographical reference layer · interactive globe' : 'High-detail visual terrain preview · 84°S–90°S'}</p>
+          <p>{mode === 'global' ? 'LROC color mosaic / LOLA surface relief' : 'LOLA elevation atlas / 85°S–90°S'}</p>
         </div>
 
         <div className="mode-switch" role="group" aria-label="Explorer mode">
@@ -138,13 +159,15 @@ function App() {
           <button className={mode === 'south-pole' ? 'is-active' : ''} onClick={() => enterMode('south-pole')}><Crosshair size={15} /> SOUTH POLE</button>
         </div>
 
-        {mode === 'global' && (
+        {(
           <div className="scene-tools">
             <button className={surfaceStyle === 'surface' ? 'is-active' : ''} onClick={() => setSurfaceStyle('surface')} title="Realistic surface"><Aperture size={16} /></button>
-            <button className={surfaceStyle === 'relief' ? 'is-active' : ''} onClick={() => setSurfaceStyle('relief')} title="Enhanced visual relief"><Layers3 size={16} /></button>
+            {mode==='global'&&<button className={surfaceStyle === 'relief' ? 'is-active' : ''} onClick={() => setSurfaceStyle('relief')} title="Enhanced visual relief"><Layers3 size={16} /></button>}
+            <button className={surfaceStyle === 'elevation' ? 'is-active' : ''} onClick={() => setSurfaceStyle('elevation')} title="LOLA elevation colors"><Map size={16}/></button>
             <div className="tool-divider" />
             <button className={labelsVisible ? 'is-active' : ''} onClick={() => setLabelsVisible((value) => !value)} title="Toggle labels"><LocateFixed size={16} /></button>
-            <button className={gridVisible ? 'is-active' : ''} onClick={() => setGridVisible((value) => !value)} title="Toggle coordinate grid"><Grid3X3 size={16} /></button>
+            {mode==='global'&&<button className={gridVisible ? 'is-active' : ''} onClick={() => setGridVisible((value) => !value)} title="Toggle coordinate grid"><Grid3X3 size={16} /></button>}
+            <button onClick={()=>setResetKey(value=>value+1)} title="Reset camera"><Orbit size={16}/></button>
           </div>
         )}
 
@@ -152,9 +175,12 @@ function App() {
           <span><i className="mouse-icon" />DRAG TO ORBIT</span><span><ZoomIn size={13} />SCROLL TO ZOOM</span><span><LocateFixed size={13} />SELECT SURFACE</span>
         </div>
 
-        {mode === 'south-pole' && (
-          <div className="preview-notice"><Info size={14} /><span><strong>VISUAL TERRAIN PREVIEW</strong> Relief is procedural—not a measured elevation product. LOLA/SLDEM ingestion is reserved for Phase 2.</span></div>
-        )}
+        <div className="surface-caption"><span>01 / {mode==='global'?'ORBITAL PERSPECTIVE':'POLAR TERRAIN'}</span><strong>{mode==='global'?'The Moon, in detail.':'A landscape at the edge of light.'}</strong><small>{mode==='global'?'NASA LROC · 8K imagery · LOLA displacement':'NASA LOLA · 40 m source · 160 m resampled grid'}</small></div>
+        {surfaceStyle==='elevation'&&<div className="elevation-legend"><span>LOLA HEIGHT / km</span><i/><div><b>−10</b><b>0</b><b>+12</b></div><small>Above the 1,737.4 km reference sphere</small></div>}
+        <div className="view-controls"><label><span>INSPECTION LIGHT</span><input aria-label="Inspection light angle" type="range" min="0" max="100" value={lightAngle} onChange={e=>setLightAngle(Number(e.target.value))}/><output>{lightAngle}°</output></label>
+          {mode==='south-pole'&&<label><span>VERTICAL SCALE</span><select aria-label="Vertical exaggeration" value={exaggeration} onChange={e=>setExaggeration(Number(e.target.value))}><option value={1}>1× actual scale</option><option value={2}>2× relief</option><option value={3}>3× relief</option></select></label>}
+          <small>Lighting for surface inspection · not a time simulation</small>
+        </div>
       </main>
 
       <aside className={`right-panel ${rightOpen ? '' : 'is-collapsed'}`}>
@@ -192,20 +218,21 @@ function App() {
         ) : (
           <div className="coordinate-selection">
             <Crosshair size={32} />
-            <span>SURFACE COORDINATE</span>
+            <span>{mode==='global'?'LUNAR RECONNAISSANCE':'SURFACE COORDINATE'}</span>
             <h2>{formatLatitude(coordinates.latitude)}</h2>
             <h2>{formatLongitude(coordinates.longitude)}</h2>
-            <p>No named feature selected. Choose a label or search the lunar gazetteer layer.</p>
+            <p>Explore the surface. Select a landmark or search the lunar feature index to begin.</p>
+            <button className="dialog-close" onClick={()=>setSearchOpen(true)}>FIND A LUNAR LOCATION</button>
           </div>
         )}
-        <div className="panel-disclaimer"><Sparkles size={13} /><span>Visualization foundation only. No landing suitability or scientific analysis is calculated in Phase 1.</span></div>
+        <div className="panel-disclaimer"><Sparkles size={13} /><span>NASA surface visualization. Lighting is adjustable for inspection. Terrain is not evaluated for landing suitability.</span></div>
       </aside>
 
       {!rightOpen && <button className="restore-panel restore-right" onClick={() => setRightOpen(true)} aria-label="Open detail panel"><Info size={16} /></button>}
 
       <footer className={`bottom-status ${!leftOpen ? 'bottom-status--wide-left' : ''} ${!rightOpen ? 'bottom-status--wide-right' : ''}`}>
-        <div className="status-segment"><span>RENDER PIPELINE</span><strong><i className="status-dot" /> WEBGL ACTIVE</strong></div>
-        <div className="status-segment"><span>SURFACE MODEL</span><strong>{mode === 'global' ? 'PROCEDURAL GLOBAL' : 'PROCEDURAL REGIONAL'}</strong></div>
+        <div className="status-segment"><span>RENDER PIPELINE</span><strong><i className="status-dot" /> {(mode==='global'?globalReady:polarReady)?'SURFACE READY':'LOADING'}</strong></div>
+        <div className="status-segment"><span>SURFACE MODEL</span><strong>{mode === 'global' ? 'LROC / LOLA' : 'LOLA POLAR DEM'}</strong></div>
         <div className="status-segment"><span>GAZETTEER</span><strong>{LUNAR_FEATURES.length} FEATURES LOADED</strong></div>
         <div className="status-grow" />
         <button onClick={() => setDataOpen(true)}><Database size={13} /> DATA INTEGRATION STATUS <ChevronDown size={13} /></button>
@@ -232,11 +259,13 @@ function App() {
       {dataOpen && (
         <div className="modal-backdrop" onMouseDown={() => setDataOpen(false)}>
           <section className="data-dialog" onMouseDown={(event) => event.stopPropagation()}>
-            <div className="dialog-heading"><div><small>PHASE 01 / SYSTEM</small><h2>Data Integration Status</h2></div><button onClick={() => setDataOpen(false)}><X size={18} /></button></div>
+            <div className="dialog-heading"><div><small>PHASE 02 / SURFACE ATLAS</small><h2>Data Integration Status</h2></div><button aria-label="Close data status" onClick={() => setDataOpen(false)}><X size={18} /></button></div>
             <div className="data-row is-ready"><span><Database size={17} /></span><div><strong>IAU / USGS Gazetteer references</strong><small>Feature centers, names, classifications, diameters</small></div><i>READY</i></div>
-            <div className="data-row"><span><Box size={17} /></span><div><strong>LRO / LOLA elevation products</strong><small>Adapter boundary prepared · ingestion begins Phase 2</small></div><i>QUEUED</i></div>
+            <div className="data-row is-ready"><span><Box size={17} /></span><div><strong>LROC 8K color / global LOLA relief</strong><small>NASA SVS CGI Moon Kit · 2019 visualization mosaic</small></div><i>INTEGRATED</i></div>
+            <div className="data-row is-ready"><span><Layers3 size={17}/></span><div><strong>South Pole LOLA elevation · V2.0</strong><small>40 m source → 160 m grid · ~474 m mesh · DE421</small></div><i>INTEGRATED</i></div>
             <div className="data-row"><span><CircleGauge size={17} /></span><div><strong>Scientific analysis engines</strong><small>No synthetic analysis exposed in this foundation</small></div><i>NOT ACTIVE</i></div>
-            <div className="integrity-note"><Info size={15} /><p><strong>Scientific integrity boundary</strong>The rendered albedo and regional relief are procedural visual assets. They are never presented as measured topography, illumination, hazard, or resource data.</p></div>
+            <div className="integrity-note"><Info size={15} /><p><strong>Source and rendering limits</strong>Color is a NASA visualization mosaic with polar infill. Elevation is gridded and interpolated from LOLA observations; browser derivatives are resampled. Regional vertical scale is selectable. Light direction is illustrative.</p></div>
+            <div className="source-links"><a href="https://svs.gsfc.nasa.gov/4720/" target="_blank" rel="noreferrer">NASA source ↗</a><a href="/lunar/ldem_85s_40m.lbl" target="_blank" rel="noreferrer">PDS product label ↗</a><a href="/lunar/manifest.json" target="_blank" rel="noreferrer">Provenance & checksums ↗</a></div>
             <button className="dialog-close" onClick={() => setDataOpen(false)}>RETURN TO EXPLORER</button>
           </section>
         </div>

@@ -3,4 +3,9 @@ dist/
 .vite/
 *.log
 .DS_Store
+data-source/
+outputs/
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
 
