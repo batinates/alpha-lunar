@@ -1,5 +1,7 @@
 # ALPHA LUNAR — Proje Durum Raporu ve Kullanım Dokümantasyonu
 
+> 13 Kasım 2026 güncellemesi: Phase 3 zaman geometrisi kilometre taşı eklendi. Güneş simgesiyle UTC zaman gezgini, SPICE Güneş/Dünya ufuk açıları ve 28 günlük grafik açılır. Ayrıntılar: [Phase 3](PHASE_3.md). Aşağıdaki Phase 2 raporu önceki teslimatın kaydıdır.
+
 **Doküman sürümü:** 2.0  
 **Tarih:** 12 Kasım 2026  
 **Aktif geliştirme fazı:** Phase 2 — NASA Surface Atlas

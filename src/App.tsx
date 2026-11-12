@@ -2,18 +2,20 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   Aperture, BookOpen, Box, ChevronDown, CircleGauge, Crosshair, Database, Expand, Grid3X3,
   Info, Layers3, LocateFixed, Map, Menu, Moon, Orbit, PanelLeftClose, PanelRightClose,
-  Search, Settings2, Sparkles, X, ZoomIn,
+  Search, Settings2, Sparkles, Sun, X, ZoomIn,
 } from 'lucide-react'
 import { MoonScene } from './components/MoonScene'
 import { SouthPoleScene } from './components/SouthPoleScene'
 import { SceneBoundary } from './components/SceneBoundary'
 import { DocumentationCenter } from './components/DocumentationCenter'
+import { TimeExplorer } from './components/TimeExplorer'
+import { interpolateEphemeris, sceneSun, validateEphemeris, type Ephemeris } from './services/science/ephemeris'
 import { LUNAR_FEATURES, SOUTH_POLE_FEATURES } from './data/lunarFeatures'
 import type { Coordinates, ExplorerMode, LunarFeature, SurfaceStyle } from './domain/lunar'
 import { formatLatitude, formatLongitude } from './lib/lunarCoordinates'
 
 const FUTURE_MODULES = [
-  'Mission Overview', 'Sun Analysis', 'Earth Communication', 'Terrain Intelligence',
+  'Mission Overview', 'Earth Communication', 'Terrain Intelligence',
   'Thermal Analysis', 'Water Ice & Resources', 'Mission Configuration',
   'Landing Optimization', 'Landing Simulation', 'Risk Assessment', 'Mission Reports',
 ]
@@ -29,6 +31,18 @@ function AlphaMark() {
 }
 
 function App() {
+  const [timeOpen,setTimeOpen]=useState(false)
+  const [ephemeris,setEphemeris]=useState<Ephemeris|null>(null)
+  const [ephemerisError,setEphemerisError]=useState('')
+  const [simulationTime,setSimulationTime]=useState(()=>Math.max(Date.parse('2026-01-01T00:00Z'),Math.min(Date.now(),Date.parse('2028-01-01T00:00Z'))))
+  useEffect(()=>{
+    if(!timeOpen||ephemeris)return
+    const controller=new AbortController()
+    setEphemerisError('')
+    fetch('/lunar/ephemeris.json',{signal:controller.signal}).then(r=>{if(!r.ok)throw new Error('Ephemeris unavailable');return r.json()}).then(validateEphemeris).then(setEphemeris).catch(e=>{if(e.name!=='AbortError')setEphemerisError('SPICE data unavailable. Close and reopen to retry.')})
+    return ()=>controller.abort()
+  },[timeOpen,ephemeris])
+  const sunDirection=useMemo(()=>timeOpen&&ephemeris?sceneSun(interpolateEphemeris(ephemeris,simulationTime).sun):undefined,[timeOpen,ephemeris,simulationTime])
   const [docsOpen, setDocsOpen] = useState(() => new URLSearchParams(window.location.search).get('view') === 'documentation')
   const [mode, setMode] = useState<ExplorerMode>('global')
   const [selected, setSelected] = useState<LunarFeature | null>(null)
@@ -108,7 +122,7 @@ function App() {
             <span>ALPHA</span><strong>LUNAR</strong>
             <small>MISSION INTELLIGENCE</small>
           </div>
-          <div className="phase-badge">PHASE 02</div>
+          <div className="phase-badge">PHASE 03</div>
         </div>
         <div className="topbar__telemetry">
           <div className="telemetry-item"><span>REFERENCE FRAME</span><strong>MOON / IAU</strong></div>
@@ -117,6 +131,7 @@ function App() {
           <div className="telemetry-item data-state"><span className="status-dot" />NASA SURFACE ATLAS</div>
         </div>
         <div className="topbar__actions">
+          <button className="icon-button" aria-label="Open time explorer" title="SPICE Time Explorer" onClick={()=>setTimeOpen(v=>!v)}><Sun size={17}/></button>
           <button className="icon-button docs-button" aria-label="Dokümantasyon merkezini aç" title="Dokümantasyon" onClick={openDocumentation}><BookOpen size={17} /></button>
           <button className="icon-button" aria-label="Open location search" onClick={() => setSearchOpen(true)}><Search size={17} /></button>
           <button className="icon-button" aria-label="Open data status" onClick={() => setDataOpen(true)}><Database size={17} /></button>
@@ -134,6 +149,7 @@ function App() {
             <span className="nav-module__icon"><Crosshair size={17} /></span><span><strong>South Pole Command</strong><small>Regional terrain view</small></span>
           </button>
           <div className="rail-section-label future-label">MISSION SYSTEMS <span>ROADMAP</span></div>
+          <button className={`nav-module ${timeOpen?'is-active':''}`} onClick={()=>setTimeOpen(v=>!v)}><span className="nav-module__icon"><Sun size={17}/></span><span><strong>Time Explorer</strong><small>SPICE / Sun & Earth geometry</small></span></button>
           <div className="future-modules">
             {FUTURE_MODULES.map((item, index) => (
               <div className="future-module" key={item}><span>{String(index + 3).padStart(2, '0')}</span>{item}</div>
@@ -151,6 +167,7 @@ function App() {
       <main className={`viewport ${!leftOpen ? 'viewport--wide-left' : ''} ${!rightOpen ? 'viewport--wide-right' : ''}`}>
         <SceneBoundary><div className={`viewport__scene scene-layer ${mode === 'global' ? 'is-active' : ''}`}>
             <MoonScene
+              sunDirection={sunDirection}
               lightAngle={lightAngle} resetKey={resetKey} onReady={readyGlobal}
               active={mode === 'global'}
               selected={selected}
@@ -196,9 +213,9 @@ function App() {
 
         <div className="surface-caption"><span>01 / {mode==='global'?'ORBITAL PERSPECTIVE':'POLAR TERRAIN'}</span><strong>{mode==='global'?'The Moon, in detail.':'A landscape at the edge of light.'}</strong><small>{mode==='global'?'NASA LROC · 8K imagery · LOLA displacement':'NASA LOLA · 40 m source · 160 m resampled grid'}</small></div>
         {surfaceStyle==='elevation'&&<div className="elevation-legend"><span>LOLA HEIGHT / km</span><i/><div><b>−10</b><b>0</b><b>+12</b></div><small>Above the 1,737.4 km reference sphere</small></div>}
-        <div className="view-controls"><label><span>INSPECTION LIGHT</span><input aria-label="Inspection light angle" type="range" min="0" max="100" value={lightAngle} onChange={e=>setLightAngle(Number(e.target.value))}/><output>{lightAngle}°</output></label>
+        <div className="view-controls"><label><span>{sunDirection&&mode==='global'?'SPICE SUN / UTC':'INSPECTION LIGHT'}</span>{sunDirection&&mode==='global'?<output>{new Date(simulationTime).toISOString().slice(0,16).replace('T',' ')}</output>:<><input aria-label="Inspection light angle" type="range" min="0" max="100" value={lightAngle} onChange={e=>setLightAngle(Number(e.target.value))}/><output>{lightAngle}°</output></>}</label>
           {mode==='south-pole'&&<label><span>VERTICAL SCALE</span><select aria-label="Vertical exaggeration" value={exaggeration} onChange={e=>setExaggeration(Number(e.target.value))}><option value={1}>1× actual scale</option><option value={2}>2× relief</option><option value={3}>3× relief</option></select></label>}
-          <small>Lighting for surface inspection · not a time simulation</small>
+          <small>{sunDirection&&mode==='global'?'Geometric solar direction · ambient fill for readability':'Lighting for surface inspection · not a time simulation'}</small>
         </div>
       </main>
 
@@ -282,7 +299,7 @@ function App() {
             <div className="data-row is-ready"><span><Database size={17} /></span><div><strong>IAU / USGS Gazetteer references</strong><small>Feature centers, names, classifications, diameters</small></div><i>READY</i></div>
             <div className="data-row is-ready"><span><Box size={17} /></span><div><strong>LROC 8K color / global LOLA relief</strong><small>NASA SVS CGI Moon Kit · 2019 visualization mosaic</small></div><i>INTEGRATED</i></div>
             <div className="data-row is-ready"><span><Layers3 size={17}/></span><div><strong>South Pole LOLA elevation · V2.0</strong><small>40 m source → 160 m grid · ~474 m mesh · DE421</small></div><i>INTEGRATED</i></div>
-            <div className="data-row"><span><CircleGauge size={17} /></span><div><strong>Scientific analysis engines</strong><small>No synthetic analysis exposed in this foundation</small></div><i>NOT ACTIVE</i></div>
+            <div className="data-row is-ready"><span><CircleGauge size={17} /></span><div><strong>SPICE time geometry · DE421</strong><small>2026–2027 · Sun/Earth centers · spherical horizon</small></div><i>INTEGRATED</i></div>
             <div className="integrity-note"><Info size={15} /><p><strong>Source and rendering limits</strong>Color is a NASA visualization mosaic with polar infill. Elevation is gridded and interpolated from LOLA observations; browser derivatives are resampled. Regional vertical scale is selectable. Light direction is illustrative.</p></div>
             <div className="source-links"><a href="https://svs.gsfc.nasa.gov/4720/" target="_blank" rel="noreferrer">NASA source ↗</a><a href="/lunar/ldem_85s_40m.lbl" target="_blank" rel="noreferrer">PDS product label ↗</a><a href="/lunar/manifest.json" target="_blank" rel="noreferrer">Provenance & checksums ↗</a></div>
             <button className="dialog-close" onClick={() => setDataOpen(false)}>RETURN TO EXPLORER</button>
@@ -290,6 +307,7 @@ function App() {
         </div>
       )}
       <DocumentationCenter open={docsOpen} onClose={closeDocumentation} onExplore={enterMode} />
+      {timeOpen&&!docsOpen&&(ephemerisError?<section className="time-explorer"><p role="alert">{ephemerisError}</p><button onClick={()=>setTimeOpen(false)}>Close</button></section>:<TimeExplorer data={ephemeris} time={simulationTime} onTime={setSimulationTime} coordinates={coordinates} onClose={()=>setTimeOpen(false)} polar={mode==='south-pole'}/>)}
     </div>
   )
 }

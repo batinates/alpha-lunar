@@ -10,11 +10,12 @@ import { elevationColor } from '../lib/elevationColor'
 import { loadHeightRaster, LUNAR_RADIUS, sampleRaster } from '../services/science/lunarAssets'
 
 export interface MoonSceneProps {
+  sunDirection?: [number,number,number]
   active?:boolean; selected:LunarFeature|null; coordinates:Coordinates; surfaceStyle:SurfaceStyle
   labelsVisible:boolean; gridVisible:boolean; lightAngle:number; resetKey:number
   onSelectFeature:(feature:LunarFeature)=>void; onSelectCoordinates:(coordinates:Coordinates)=>void; onReady:()=>void
 }
-function CameraRig({selected,resetKey,lightAngle}:Pick<MoonSceneProps,'selected'|'resetKey'|'lightAngle'>){
+function CameraRig({selected,resetKey,lightAngle,sunDirection}:Pick<MoonSceneProps,'selected'|'resetKey'|'lightAngle'|'sunDirection'>){
   const {camera,size}=useThree()
   const controls=useRef<React.ComponentRef<typeof OrbitControls>>(null), light=useRef<DirectionalLight>(null)
   const flight=useRef<{from:Vector3;to:Vector3;elapsed:number}|null>(null)
@@ -36,7 +37,8 @@ function CameraRig({selected,resetKey,lightAngle}:Pick<MoonSceneProps,'selected'
       controls.current?.target.set(0,0,0);camera.lookAt(0,0,0)
       if(t===1)flight.current=null
     }
-    light.current?.position.set(-Math.sin(lightAngle*Math.PI/180)*8,2.4,Math.cos(lightAngle*Math.PI/180)*8).applyQuaternion(camera.quaternion)
+    if(sunDirection)light.current?.position.set(...sunDirection).multiplyScalar(8)
+    else light.current?.position.set(-Math.sin(lightAngle*Math.PI/180)*8,2.4,Math.cos(lightAngle*Math.PI/180)*8).applyQuaternion(camera.quaternion)
   })
   return <><directionalLight ref={light} intensity={3.15} color="#fffaf1"/><OrbitControls ref={controls} makeDefault enableDamping dampingFactor={.075} minDistance={1.22} maxDistance={12} rotateSpeed={.45} zoomSpeed={.7} enablePan={false} onStart={()=>{flight.current=null}}/></>
 }
@@ -93,5 +95,5 @@ function Moon(props:MoonSceneProps){
 }
 export function MoonScene(props:MoonSceneProps){return <Canvas frameloop={props.active===false?'never':'always'} dpr={[1,1.75]} camera={{position:[-.7,.3,4.2],fov:38,near:.01,far:150}} gl={{antialias:true,powerPreference:'high-performance'}}>
   <color attach="background" args={['#03070b']}/><ambientLight intensity={.11}/><Stars radius={65} depth={35} count={550} factor={.65} saturation={0} fade speed={0}/>
-  <Suspense fallback={null}><Moon {...props}/></Suspense><CameraRig selected={props.selected} resetKey={props.resetKey} lightAngle={props.lightAngle}/>
+  <Suspense fallback={null}><Moon {...props}/></Suspense><CameraRig selected={props.selected} resetKey={props.resetKey} lightAngle={props.lightAngle} sunDirection={props.sunDirection}/>
   </Canvas>}
