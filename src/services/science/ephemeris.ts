@@ -12,10 +12,10 @@ export function interpolateEphemeris(data: Ephemeris, time: number) {
   return { sun: values.slice(0,3) as XYZ, earth: values.slice(3,6) as XYZ }
 }
 /** Geometric center elevation above a spherical local horizon; no terrain, refraction, eclipse or light-time. */
-export function horizonAngles(position: XYZ, latitude: number, longitude: number) {
+export function horizonAngles(position: XYZ, latitude: number, longitude: number, observerHeightMeters=0) {
   const lat=latitude*Math.PI/180, lon=longitude*Math.PI/180
   const up=[Math.cos(lat)*Math.cos(lon),Math.cos(lat)*Math.sin(lon),Math.sin(lat)]
-  const relative=position.map((v,i)=>v-1737.4*up[i]), distance=Math.hypot(...relative)
+  const relative=position.map((v,i)=>v-(1737.4+observerHeightMeters/1000)*up[i]), distance=Math.hypot(...relative)
   const dot=(v:number[])=>v.reduce((sum,x,i)=>sum+x*relative[i],0)
   const east=dot([-Math.sin(lon),Math.cos(lon),0]), north=dot([-Math.sin(lat)*Math.cos(lon),-Math.sin(lat)*Math.sin(lon),Math.cos(lat)])
   return { elevation:Math.asin(Math.max(-1,Math.min(1,dot(up)/distance)))*180/Math.PI, azimuth:(Math.atan2(east,north)*180/Math.PI+360)%360, distance }

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Pause, Play, X } from 'lucide-react'
 import { horizonAngles, interpolateEphemeris, type Ephemeris } from '../services/science/ephemeris'
 import type { Coordinates } from '../domain/lunar'
+import { TerrainHorizon } from './TerrainHorizon'
 
 export function TimeExplorer({data,time,onTime,coordinates,onClose,polar}:{data:Ephemeris|null;time:number;onTime:(time:number)=>void;coordinates:Coordinates;onClose:()=>void;polar:boolean}) {
   const [playing,setPlaying]=useState(false)
@@ -39,7 +40,8 @@ export function TimeExplorer({data,time,onTime,coordinates,onClose,polar}:{data:
         {series.length>0&&<line x1={(time-series[0].time)/(28*86400000)*320} x2={(time-series[0].time)/(28*86400000)*320} y1="0" y2="120" stroke="#fff" opacity=".5"/>}
       </svg>
       <div className="time-range"><span>+90° / 0° / −90°</span><span>{series.length?new Date(series[0].time).toISOString().slice(0,10):''} → 28d</span></div>
-      <p className="time-note">SPICE · DE421 · MOON_ME_DE421<br/>Geometric centers above a spherical horizon. Terrain occlusion, eclipses and link budgets are not included. {polar?'Polar terrain retains inspection lighting.':'Global sunlight follows the selected UTC epoch.'}</p>
+      <p className="time-note">SPICE · DE421 · MOON_ME_DE421<br/>The angles above use a reference sphere without terrain. {polar?'Polar terrain retains inspection lighting.':'Global sunlight follows the selected UTC epoch.'}</p>
+      {coordinates.latitude<=-85?<TerrainHorizon data={data} time={time} coordinates={coordinates}/>:<p className="time-note">Select a location south of 85°S to calculate a regional terrain horizon.</p>}
       <a href="/lunar/ephemeris-provenance.json" target="_blank" rel="noreferrer">KERNEL SOURCES & VALIDATION ↗</a>
     </>}
   </section>

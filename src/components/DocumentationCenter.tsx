@@ -27,7 +27,7 @@ const phases = [
     no: '03', status: 'active', label: 'AKTİF', title: 'Aydınlatma ve görünürlük',
     summary: 'Tarih/saat kontrollü Güneş geometrisi, arazi gölgeleri ve Dünya görüş hattı.',
     items: ['SPICE zaman/geometri çekirdeği', 'Güneş açısı ve gölge süresi', 'Dünya iletişim görünürlüğü', 'Zaman çizelgesi karşılaştırması'],
-    next: 'Hazır: SPICE zaman gezgini ve küresel Güneş yönü. Bekleyen: DEM ufuk engelleri, tutulmalar ve gölge süreleri. Ufuk üstündeki Dünya merkezi, iletişim garantisi değildir.',
+    next: 'Hazır: SPICE zaman gezgini, küresel Güneş yönü ve örneklenmiş bölgesel DEM ufku. 2/5/10 m gözlemci, 100 km tarama ve 28 günlük merkez açıklığı eklendi. Bekleyen: disk/tutulma modeli, gölge süreleri ve dış bilimsel doğrulama.',
   },
   {
     no: '04', status: 'planned', label: 'PLANLANDI', title: 'Bilimsel arazi zekâsı',
@@ -124,7 +124,7 @@ export function DocumentationCenter({ open, onClose, onExplore }: DocumentationC
           <div className="docs-status-grid">
             <article className="complete"><span><Check size={17}/></span><small>PHASE 01</small><h3>Tamamlandı</h3><p>3B Ay, etkileşim, tasarım sistemi, konum dizini ve Güney Kutbu keşif deneyimi üretim ortamında çalışıyor.</p></article>
             <article className="active"><span><Database size={17}/></span><small>PHASE 02</small><h3>Veri çekirdeği hazır</h3><p>NASA LROC ve LOLA verileri işlendi; kaynak izleri, yerel türevler ve gerçek yükselti görselleştirmesi eklendi.</p></article>
-            <article><span><CircleDashed size={17}/></span><small>PHASE 03</small><h3>Zaman geometrisi hazır</h3><p>SPICE tabanlı Güneş/Dünya ufuk açıları ve 28 günlük profil eklendi. Arazi engelleri bekliyor; Phase 4–7 planlandı.</p></article>
+            <article><span><CircleDashed size={17}/></span><small>PHASE 03</small><h3>Zaman ve arazi ufku</h3><p>SPICE ufuk açıları, örneklenmiş kutup arazi profili ve 28 günlük merkez açıklığı eklendi. Tutulma/gölge süreleri bekliyor; Phase 4–7 planlandı.</p></article>
           </div>
           <div className="docs-callout"><ShieldCheck size={18}/><p><strong>Önemli ayrım:</strong> Uygulamadaki ayarlanabilir ışık yüzeyi incelemek içindir; tarih/saat tabanlı Güneş simülasyonu değildir. Sistem bugün iniş güvenliği veya görev uygunluğu kararı üretmez.</p></div>
         </section>
@@ -163,6 +163,7 @@ export function DocumentationCenter({ open, onClose, onExplore }: DocumentationC
         <section className="docs-section" id="operations">
           <div className="docs-section__index">04 / OPERASYON KILAVUZU</div>
           <div className="docs-section__heading"><div><h2>Program nasıl kullanılır?</h2><p>Mevcut atlas deneyimi için hızlı görev akışı.</p></div></div>
+          <div className="docs-callout"><Map size={18}/><p><strong>Arazi ufku:</strong> Güney Kutbu’nda bir konum seçin ve Time Explorer panelini aşağı kaydırın. Terrain horizon bölümü, 160 m DEM üzerinde 1° yön aralığıyla 100 km’ye kadar tarama yapar. Gözlemci yüksekliğini 2/5/10 m seçebilirsiniz. Güneş/Dünya merkezinin örneklenmiş araziye göre açıklığı gösterilir. Pozitif değer; tüm diskin görünmesi, aydınlanma süresi veya iletişim garantisi değildir. Tarama dışı arazi ve tutulmalar hesaplanmaz.</p></div>
           <div className="docs-callout"><Sun size={18}/><p><strong>Yeni: Time Explorer.</strong> Üst menüde Güneş simgesine basın. UTC tarihini seçin, −1/+1 gün düğmelerini veya zaman kaydırıcısını kullanın; Play ile zamanı ilerletin. 2026–2027 boyunca seçili koordinatın Güneş ve Dünya merkezlerinin küresel ufka göre açısını okuyun. Küresel Ay ışığı tarihe bağlanır; kutup arazi sahnesi inceleme ışığını korur. Arazi engelleri ve tutulmalar bu hesapta yoktur.</p></div>
           <div className="docs-workflow">
             <article><b>1</b><span><strong>Görünümü seç</strong><p>Alt merkezdeki GLOBAL / SOUTH POLE anahtarıyla küresel atlas veya bölgesel arazi moduna geç.</p></span></article>

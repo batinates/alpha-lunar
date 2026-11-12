@@ -8,4 +8,12 @@ Regenerate: `python -m pip install spiceypy numpy`, then `python scripts/ingest_
 
 Local angles subtract an observer on a 1737.4 km sphere and use its radial normal. Terrain height, terrain horizons, finite solar/Earth disk, light-time, aberration, eclipses, refraction and communication link budgets are excluded. Above-horizon status is not a claim of illumination or communication availability. The global scene follows the epoch's solar direction, with artistic ambient fill; the projected polar terrain retains inspection lighting until terrain-aware geometry is implemented.
 
-Next Phase 3 milestone: curved/locally tangent polar surface geometry, DEM horizon tracing, occultation, illumination-duration maps and validation against reference products. Phase 2 tile streaming/LOD remains open. Phases 4–7 remain planned.
+## Regional terrain horizon milestone — 13 November 2026
+
+Selecting a location south of 85°S now starts a dedicated Web Worker that loads the 160 m polar raster. It traces 360 azimuths at one-degree spacing, sampling great-circle paths at 160 m increments up to 100 km or the raster's pixel-center boundary. Each sample is converted into a curved-Moon observer-relative elevation angle using the actual DEM elevation and a selectable 2/5/10 m mast. The maximum angle defines that ray's sampled horizon. Adjacent azimuths are linearly interpolated; missing samples remain unknown. The worker is reused and stale responses are discarded after selection changes.
+
+The new terrain section uses topocentric Sun/Earth vectors with DEM elevation plus mast height. It shows center clearance and scan range in each direction, an azimuth horizon plot and 672 hourly midpoint samples over 28 UTC days. The percentage is the fraction of known sampled centers above the regional profile. It is **not illumination duration**, finite-disk visibility, a PSR classification or link availability. Sub-grid ridges, gaps between azimuths, terrain beyond 100 km/outside the raster, finite disks and eclipses remain unmodeled. No exterior flat terrain is invented. Exaggeration in the visual scene never changes this analysis.
+
+Analytic tests cover spherical curvature, mast-height horizon dip, south-pole geodesics, wrapped azimuths, missing coverage and observer parallax. External scientific validation against higher-resolution reference products remains pending. NASA reference visualization: https://svs.gsfc.nasa.gov/5027/ (context only; not a numerical validation).
+
+Next: curved/locally tangent polar rendering, finer adaptive horizon sampling, finite-disk occultation, illumination-duration maps and external validation. Phase 2 tile streaming/LOD remains open. Phases 4–7 remain planned.
