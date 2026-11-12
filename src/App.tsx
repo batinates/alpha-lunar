@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
-  Aperture, Box, ChevronDown, CircleGauge, Crosshair, Database, Expand, Grid3X3,
+  Aperture, BookOpen, Box, ChevronDown, CircleGauge, Crosshair, Database, Expand, Grid3X3,
   Info, Layers3, LocateFixed, Map, Menu, Moon, Orbit, PanelLeftClose, PanelRightClose,
   Search, Settings2, Sparkles, X, ZoomIn,
 } from 'lucide-react'
 import { MoonScene } from './components/MoonScene'
 import { SouthPoleScene } from './components/SouthPoleScene'
 import { SceneBoundary } from './components/SceneBoundary'
+import { DocumentationCenter } from './components/DocumentationCenter'
 import { LUNAR_FEATURES, SOUTH_POLE_FEATURES } from './data/lunarFeatures'
 import type { Coordinates, ExplorerMode, LunarFeature, SurfaceStyle } from './domain/lunar'
 import { formatLatitude, formatLongitude } from './lib/lunarCoordinates'
@@ -28,6 +29,7 @@ function AlphaMark() {
 }
 
 function App() {
+  const [docsOpen, setDocsOpen] = useState(() => new URLSearchParams(window.location.search).get('view') === 'documentation')
   const [mode, setMode] = useState<ExplorerMode>('global')
   const [selected, setSelected] = useState<LunarFeature | null>(null)
   const [coordinates, setCoordinates] = useState<Coordinates>({ latitude: 9.62, longitude: -20.08 })
@@ -48,9 +50,11 @@ function App() {
   const readyGlobal = useCallback(() => setGlobalReady(true), [])
   const readyPolar = useCallback(() => setPolarReady(true), [])
   useEffect(() => {
-    const onKey = (event:KeyboardEvent) => {if(event.key==='Escape'){setSearchOpen(false);setDataOpen(false)}}
+    const onKey = (event:KeyboardEvent) => {if(event.key==='Escape'){setSearchOpen(false);setDataOpen(false);setDocsOpen(false)}}
+    const onHistory = () => setDocsOpen(new URLSearchParams(window.location.search).get('view') === 'documentation')
     window.addEventListener('keydown',onKey)
-    return () => window.removeEventListener('keydown',onKey)
+    window.addEventListener('popstate',onHistory)
+    return () => { window.removeEventListener('keydown',onKey); window.removeEventListener('popstate',onHistory) }
   }, [])
   const viewport = useRef<HTMLDivElement>(null)
 
@@ -80,6 +84,20 @@ function App() {
     else await document.exitFullscreen()
   }
 
+  function openDocumentation() {
+    const url = new URL(window.location.href)
+    url.searchParams.set('view', 'documentation')
+    window.history.pushState({}, '', url)
+    setDocsOpen(true)
+  }
+
+  function closeDocumentation() {
+    const url = new URL(window.location.href)
+    url.searchParams.delete('view')
+    window.history.pushState({}, '', url)
+    setDocsOpen(false)
+  }
+
   return (
     <div className="app-shell" ref={viewport}>
       <header className="topbar">
@@ -99,6 +117,7 @@ function App() {
           <div className="telemetry-item data-state"><span className="status-dot" />NASA SURFACE ATLAS</div>
         </div>
         <div className="topbar__actions">
+          <button className="icon-button docs-button" aria-label="Dokümantasyon merkezini aç" title="Dokümantasyon" onClick={openDocumentation}><BookOpen size={17} /></button>
           <button className="icon-button" aria-label="Open location search" onClick={() => setSearchOpen(true)}><Search size={17} /></button>
           <button className="icon-button" aria-label="Open data status" onClick={() => setDataOpen(true)}><Database size={17} /></button>
           <button className="icon-button" aria-label="Enter fullscreen" onClick={toggleFullscreen}><Expand size={17} /></button>
@@ -270,6 +289,7 @@ function App() {
           </section>
         </div>
       )}
+      <DocumentationCenter open={docsOpen} onClose={closeDocumentation} onExplore={enterMode} />
     </div>
   )
 }
