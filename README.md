@@ -29,8 +29,10 @@ Inspection lighting is a rendering control, not a date-dependent Sun calculation
 
 ## Run locally
 
+Prerequisites: Node.js 24+ and pnpm 11.25.0 (the version in `packageManager`). GitHub Actions installs this version and runs the frozen-lockfile install, all tests and the production build for every main-branch push and pull request.
+
 ```bash
-pnpm install
+pnpm install --frozen-lockfile
 pnpm dev
 ```
 
