@@ -1,5 +1,15 @@
 # ALPHA LUNAR — Lunar Surface Atlas
 
+## Current milestone: Phase 3
+
+The current application includes the SPICE Time Explorer (2026–2027 UTC), Sun/Earth geometric angles, date-driven global lighting, and a worker-based regional terrain horizon for locations south of 85°S. Choose a 2/5/10 m observer height and inspect the 28-day sampled center-clearance summary. See [Phase 3 methods and limits](docs/PHASE_3.md) and the [Turkish project report](docs/PROJECT_REPORT_TR.md).
+
+All runtime assets are included in `public/lunar`; cloning this repository is sufficient to build and run the application. Original NASA raster files and SPICE kernels are attached to the GitHub release `phase3-horizon-v1` as `alpha-lunar-source-data.tar.gz`. Extract it at the project root to restore `data-source/` and `.cache/spice/`. Their individual source URLs and checksums are recorded in the lunar and ephemeris provenance manifests. The release also contains a prebuilt static site archive.
+
+Install JavaScript dependencies with `pnpm install --frozen-lockfile`. Optional data regeneration uses Python with `Pillow`, `numpy` and `spiceypy`. Run `python scripts/ingest_lunar.py` and `python scripts/ingest_ephemeris.py` to rebuild the datasets. Dependencies, build caches and credentials are not stored in Git.
+
+The sections below describe the original surface-atlas foundation; Phase 3 additions and limitations are documented above.
+
 ALPHA LUNAR is an interactive lunar exploration application and the foundation for a future scientific digital twin and mission-intelligence platform.
 
 Phase 1 established the React/TypeScript application, dark aerospace interface, interactive globe, feature search, camera navigation, and South Pole mode. This first Phase 2 milestone replaces the procedural appearance and crater shapes with NASA imagery and elevation derivatives. Higher-resolution terrain streaming and scientific analysis remain future work.
