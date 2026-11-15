@@ -1,0 +1,98 @@
+{
+  "frame": "MOON_ME_DE421",
+  "projection": "South polar stereographic, z positive down",
+  "encoding": "Little-endian signed int16, 0.5 m per count, -32768 unknown",
+  "method": "Valid-only full source blocks averaged from NASA PGDA 5 m DEMs",
+  "sites": [
+    {
+      "id": "01",
+      "name": "Connecting Ridge",
+      "x": -19000,
+      "z": 4000,
+      "size": 16000,
+      "reference": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site01/Site01_final_adj_5mpp_surf.tif",
+      "referenceSha256": "3ba7b97cb00a2bcf21189c3aeb535f65afc21207154ab9f0d43c5bdc1f7e747e",
+      "comparison": {
+        "elevationCells": 9900,
+        "elevationBiasMeters": -0.27080542507167904,
+        "elevationRmseMeters": 0.6307808114391612,
+        "elevationP95AbsMeters": 1.3025743663311,
+        "slopeCells": 9506,
+        "slopeRmseDeg": 0.11707618981428028,
+        "slopeP95AbsDeg": 0.2383562384634652
+      },
+      "levels": {
+        "80": {
+          "file": "site-01-80m.i16",
+          "width": 200,
+          "sha256": "ac3177650415554b60bdd9e68887b87e3eb09cb144aa7bd29a50eb932e389ff1"
+        },
+        "20": {
+          "file": "site-01-20m.i16",
+          "width": 800,
+          "sha256": "6389c7846dfeec718e1e096f5e9e29d596169e52f25ed40df5e09525ee5db217"
+        }
+      }
+    },
+    {
+      "id": "04",
+      "name": "Shackleton Rim",
+      "x": -9000,
+      "z": -1000,
+      "size": 16000,
+      "reference": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site04/Site04_final_adj_5mpp_surf.tif",
+      "referenceSha256": "38ff70dbdf2f066c2cfa94a646c3a59d653ce7f6b4528b15fc1b43ee397ce758",
+      "comparison": {
+        "elevationCells": 9801,
+        "elevationBiasMeters": -0.32105372101790086,
+        "elevationRmseMeters": 1.176761230701495,
+        "elevationP95AbsMeters": 2.604703903198242,
+        "slopeCells": 9409,
+        "slopeRmseDeg": 0.21200939640614874,
+        "slopeP95AbsDeg": 0.45125443522171343
+      },
+      "levels": {
+        "80": {
+          "file": "site-04-80m.i16",
+          "width": 200,
+          "sha256": "9d2551428c98ab3fc284f12400be4d22edcbea46cda156b01ba3eb3ad7d41cd8"
+        },
+        "20": {
+          "file": "site-04-20m.i16",
+          "width": 800,
+          "sha256": "b1d1e567742a7e1bcbc262e0c63aec7025710e6861054581848f36bed87facae"
+        }
+      }
+    },
+    {
+      "id": "11",
+      "name": "de Gerlache Rim",
+      "x": -45000,
+      "z": -23000,
+      "size": 16000,
+      "reference": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site11/Site11_final_adj_5mpp_surf.tif",
+      "referenceSha256": "58f3372c35bbd6baf38ffd5633c1c96b59bd89dbd252150581d12893a43136e5",
+      "comparison": {
+        "elevationCells": 9801,
+        "elevationBiasMeters": -0.21654912634056958,
+        "elevationRmseMeters": 0.6499106006715557,
+        "elevationP95AbsMeters": 1.2953909635543823,
+        "slopeCells": 9409,
+        "slopeRmseDeg": 0.1424324909879587,
+        "slopeP95AbsDeg": 0.29697078397709054
+      },
+      "levels": {
+        "80": {
+          "file": "site-11-80m.i16",
+          "width": 200,
+          "sha256": "b8f5e01029f5d63c2d3844a7341be41c0450938a883c8fbeb6164c476c064146"
+        },
+        "20": {
+          "file": "site-11-20m.i16",
+          "width": 800,
+          "sha256": "4dcd0d6233a91c71d5c23b52cbaeb49d2bab0586d1a73eae08887ee96958abfa"
+        }
+      }
+    }
+  ]
+}

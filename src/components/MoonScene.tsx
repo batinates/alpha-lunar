@@ -8,14 +8,17 @@ import { latLonToVector3, vector3ToLatLon } from '../lib/lunarCoordinates'
 import { createLabelTexture } from '../lib/labelTexture'
 import { elevationColor } from '../lib/elevationColor'
 import { loadHeightRaster, LUNAR_RADIUS, sampleRaster } from '../services/science/lunarAssets'
+import { LunarMissionOverlay } from './LunarMissions'
 
 export interface MoonSceneProps {
   sunDirection?: [number,number,number]
+  focusCoordinates?: Coordinates | null
+  missions?: React.ComponentProps<typeof LunarMissionOverlay>
   active?:boolean; selected:LunarFeature|null; coordinates:Coordinates; surfaceStyle:SurfaceStyle
   labelsVisible:boolean; gridVisible:boolean; lightAngle:number; resetKey:number
   onSelectFeature:(feature:LunarFeature)=>void; onSelectCoordinates:(coordinates:Coordinates)=>void; onReady:()=>void
 }
-function CameraRig({selected,resetKey,lightAngle,sunDirection}:Pick<MoonSceneProps,'selected'|'resetKey'|'lightAngle'|'sunDirection'>){
+function CameraRig({selected,resetKey,lightAngle,sunDirection,focusCoordinates}:Pick<MoonSceneProps,'selected'|'resetKey'|'lightAngle'|'sunDirection'|'focusCoordinates'>){
   const {camera,size}=useThree()
   const controls=useRef<React.ComponentRef<typeof OrbitControls>>(null), light=useRef<DirectionalLight>(null)
   const flight=useRef<{from:Vector3;to:Vector3;elapsed:number}|null>(null)
@@ -24,10 +27,11 @@ function CameraRig({selected,resetKey,lightAngle,sunDirection}:Pick<MoonScenePro
   useEffect(()=>{
     const resetting=previousReset.current!==resetKey
     previousReset.current=resetKey
-    if(!selected&&!resetting)return
-    const target=selected?latLonToVector3(selected.latitude,selected.longitude):latLonToVector3(7,-12)
+    const focus = selected ?? focusCoordinates
+    if(!focus&&!resetting)return
+    const target=focus?latLonToVector3(focus.latitude,focus.longitude):latLonToVector3(7,-12)
     flight.current={from:camera.position.clone(),to:target.multiplyScalar(distance),elapsed:0}
-  },[selected,resetKey,distance,camera])
+  },[selected,focusCoordinates,resetKey,distance,camera])
   useFrame((_,delta)=>{
     if(flight.current){
       const f=flight.current;f.elapsed+=Math.min(delta,.05)
@@ -91,9 +95,13 @@ function Moon(props:MoonSceneProps){
   return <>
     <mesh geometry={geometry} onClick={pick}><meshStandardMaterial key={props.surfaceStyle} vertexColors={props.surfaceStyle==='elevation'} map={props.surfaceStyle==='surface'?color:null} color={props.surfaceStyle==='relief'?'#a9a9a5':'#ffffff'} bumpMap={bump} bumpScale={props.surfaceStyle==='relief'?.028:24000/LUNAR_RADIUS} roughness={1} metalness={0}/></mesh>
     {props.gridVisible&&<SurfaceGrid/>}{props.labelsVisible&&<Markers selected={props.selected} onSelect={props.onSelectFeature}/>}
+    {props.missions && <LunarMissionOverlay {...props.missions} />}
+    {props.focusCoordinates && <mesh position={latLonToVector3(props.focusCoordinates.latitude, props.focusCoordinates.longitude, 1.011)}>
+      <sphereGeometry args={[.009, 12, 8]} /><meshBasicMaterial color="#e8bc79" toneMapped={false} />
+    </mesh>}
   </>
 }
 export function MoonScene(props:MoonSceneProps){return <Canvas frameloop={props.active===false?'never':'always'} dpr={[1,1.75]} camera={{position:[-.7,.3,4.2],fov:38,near:.01,far:150}} gl={{antialias:true,powerPreference:'high-performance'}}>
   <color attach="background" args={['#03070b']}/><ambientLight intensity={.11}/><Stars radius={65} depth={35} count={550} factor={.65} saturation={0} fade speed={0}/>
-  <Suspense fallback={null}><Moon {...props}/></Suspense><CameraRig selected={props.selected} resetKey={props.resetKey} lightAngle={props.lightAngle} sunDirection={props.sunDirection}/>
+  <Suspense fallback={null}><Moon {...props}/></Suspense><CameraRig selected={props.selected} focusCoordinates={props.focusCoordinates} resetKey={props.resetKey} lightAngle={props.lightAngle} sunDirection={props.sunDirection}/>
   </Canvas>}

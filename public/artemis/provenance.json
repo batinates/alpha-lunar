@@ -1,0 +1,32 @@
+{
+  "model": "NASA Space Launch System (SLS) Block 1",
+  "source": {
+    "organization": "NASA Marshall Space Flight Center",
+    "productPage": "https://science.nasa.gov/3d-resources/space-launch-system-sls-block-1/",
+    "fileName": "Space Launch System (SLS) Block 1.stl",
+    "sha256": "d3af75412a54f1d15d644cce56e895fe6813452b49dc0558b4b2ddfb484844ac"
+  },
+  "processing": [
+    "Centered the printable STL mesh and uniformly scaled it to the NASA reference height of 98.27 m.",
+    "Simplified the mesh in Blender 4.3.2 using the Decimate modifier at a ratio of 0.22 and exported it as a Y-up GLB.",
+    "Applied an illustrative display material and rendered a static preview of the same mesh."
+  ],
+  "technicalReference": {
+    "title": "NASA Artemis II Reference Guide",
+    "printedPage": 68,
+    "url": "https://www.nasa.gov/wp-content/uploads/2026/01/a2-reference-guide-012825.pdf#page=68",
+    "classification": "Published reference specifications"
+  },
+  "assets": [
+    {
+      "fileName": "sls-block-1.glb",
+      "bytes": 1091340,
+      "sha256": "09d041a2c7119c5a50d2bd638cad6518aa50ff6cd8a89de39f491b5253163b53"
+    },
+    {
+      "fileName": "sls-block-1.webp",
+      "bytes": 13484,
+      "sha256": "b76d02923bdeec2939ad4dc4277800e93932382690d0622060403f1b632f5550"
+    }
+  ]
+}

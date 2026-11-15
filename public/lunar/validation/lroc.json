@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "area": "Shackleton Rim (Site04)",
+  "products": [
+    {
+      "id": "WAC_MOVIE_S20091106T2212",
+      "source": "https://pds.lroc.im-ldi.com/data/LRO-L-LROC-5-RDR-V1.0/LROLRC_2001/DATA/BDR/WAC_POLE/WAC_POLE_MOVIE_SOUTH/WAC_MOVIE_S20091106T2212.IMG",
+      "utc": "2009-11-06T22:16:04.500000Z",
+      "points": 6400,
+      "matchPercent": 85.59375,
+      "mcc": 0.7390866177967174,
+      "tp": 2375,
+      "tn": 3103,
+      "fp": 883,
+      "fn": 39,
+      "threshold": 0.02362149953842163,
+      "headerSha256": "6e8545029c6c0bb7504915ae25864a4d38f4c2659bbf05b1aec033b0be2dbfa3",
+      "rangeSha256": "70684910a71bc1694a97d80cb1256e606dddba64051c46f6b37da93c3eb2da61"
+    },
+    {
+      "id": "WAC_MOVIE_S20091101T2323",
+      "source": "https://pds.lroc.im-ldi.com/data/LRO-L-LROC-5-RDR-V1.0/LROLRC_2001/DATA/BDR/WAC_POLE/WAC_POLE_MOVIE_SOUTH/WAC_MOVIE_S20091101T2323.IMG",
+      "utc": "2009-11-01T23:27:05.500000Z",
+      "points": 6400,
+      "matchPercent": 68.640625,
+      "mcc": 0.5147761634645837,
+      "tp": 2371,
+      "tn": 2022,
+      "fp": 1987,
+      "fn": 20,
+      "threshold": 0.0260926466435194,
+      "headerSha256": "73dbd003bb490f4fdd28bfa6ebe94edc45ef0ff0e2f28555be580a487c972b5e",
+      "rangeSha256": "5b7e4eaa4d61016fe34ff4f3d306aada85af12232587bdef16a11528e07aa0c5"
+    }
+  ],
+  "headerRange": "0-16383",
+  "imageRange": "71865600-76024319",
+  "demSha256": "e93c5cb6f21ae356345250f1712b5d09dc7c51e9ac793cef66aa324effd52bee"
+}

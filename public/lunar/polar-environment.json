@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "grid": {
+    "width": 632,
+    "height": 632,
+    "spacingMeters": 480,
+    "halfExtentMeters": 151680,
+    "projection": "South polar stereographic, planetocentric, 0\u00b0 east meridian up, 1737400 m sphere",
+    "registration": "Pixel centers; rows run down; bounds match the bundled LOLA DEM derivative",
+    "format": "6 bytes per cell, little endian: uint16 peak (0.1 K), uint16 mean (0.1 K), uint8 populated bins, uint8 shadow count out of 64. Missing uint16=65535 or uint8=255."
+  },
+  "thermal": {
+    "representation": "Observation-derived climatological summaries with interpolation",
+    "citation": "Schorghofer & Williams, Harvard Dataverse V3",
+    "doi": "https://doi.org/10.7910/DVN/EGOOCL",
+    "files": "Pinned polar_south_96x2 downloads; internal title says 24x6 so no sampling denominator is used",
+    "method": "Peak is max over the intersecting 3\u00d73 source cells; mean is weighted by projected overlap area; sampling is the minimum populated-bin count. Missing input in a stencil propagates.",
+    "limits": "The source axes are converted from lunar-radius units to meters. Assumed alignment with DE421, no independently fitted registration. Values are climatological and include inferred time bins. Minimum, instant and hardware temperatures are unavailable."
+  },
+  "shadow": {
+    "representation": "Modeled permanent shadow from LOLA terrain and illumination geometry",
+    "citation": "Mazarico et al. (2011), NASA PDS LPSR_85S_060M_201608 V1.05",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "method": "Crop one 60 m pixel on each side, count shadow-flagged pixels in each 8\u00d78 block; unrecognized DN=0 propagates unknown."
+  },
+  "ice": {
+    "thermalScreenKelvin": 110,
+    "meaning": "Cold-trap screening threshold, independent of ice detection or concentration",
+    "thresholdReference": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6130389/",
+    "observation": "LCROSS Centaur ejecta at Cabeus; point evidence only",
+    "location": {
+      "latitude": -84.6796,
+      "longitude": -48.7093,
+      "oneSigmaMetersNorth": 115,
+      "oneSigmaMetersEast": 44
+    },
+    "observationSource": "https://science.nasa.gov/image-detail/20110615lcross/",
+    "locationSource": "https://arxiv.org/abs/1103.1687"
+  },
+  "sources": [
+    {
+      "file": "diviner-tmax.grd",
+      "url": "https://dataverse.harvard.edu/api/access/datafile/8134810",
+      "bytes": 25705516,
+      "sha256": "4af1530db5c0acd38a8b3c34ef02e2194ee37d51195b467fd6f25527c305630d"
+    },
+    {
+      "file": "diviner-tmean.grd",
+      "url": "https://dataverse.harvard.edu/api/access/datafile/8134809",
+      "bytes": 25705516,
+      "sha256": "b0e3898cc37da1dade0b66e9386f442cc4fe01539b9c53c2c770c9cce5a5e816"
+    },
+    {
+      "file": "diviner-bins.grd",
+      "url": "https://dataverse.harvard.edu/api/access/datafile/8134808",
+      "bytes": 25705516,
+      "sha256": "25e26c5490a2e1b9fc51085191e97133eef59777e2c35df25e4ac6c154ea5f2d"
+    },
+    {
+      "file": "lpsr_85s_060m_201608.lbl",
+      "url": "https://imbrium.mit.edu/EXTRAS/ILLUMINATION/IMG/LPSR_85S_060M_201608.LBL",
+      "bytes": 3914,
+      "sha256": "42ae7cb0ae64ff8df7a17106228921bd07eb9afba8fb833c4a8cfd2f53487c0f"
+    },
+    {
+      "file": "lpsr_85s_060m_201608.img",
+      "url": "https://imbrium.mit.edu/EXTRAS/ILLUMINATION/IMG/LPSR_85S_060M_201608.IMG",
+      "bytes": 51166728,
+      "sha256": "f8203cab342c817fc7851431e264def3cc64a3b8c30f032d61e0a44f1e4ef761"
+    }
+  ],
+  "output": {
+    "file": "polar-environment.bin",
+    "bytes": 2396544,
+    "sha256": "c62554df3bffa3083e9889af7e51cdd4fff6e3d9debaf4cb3d28e5744f037efe"
+  }
+}

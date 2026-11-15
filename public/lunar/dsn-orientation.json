@@ -1,0 +1,30 @@
+{
+  "start": "2026-01-01T00:00:00+00:00",
+  "stepMs": 600000,
+  "count": 157825,
+  "frame": "ITRF93 to MOON_ME_DE421",
+  "encoding": "SPICE scalar-first unit quaternion, little endian float32",
+  "sources": [
+    {
+      "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/lsk/naif0012.tls",
+      "sha256": "678e32bdb5a744117a467cd9601cd6b373f0e9bc9bbde1371d5eee39600a039b"
+    },
+    {
+      "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/moon_pa_de421_1900-2050.bpc",
+      "sha256": "656f90616403d75a75f0cd6c8830fc5b44f8cb4facb5ccb8915e752b397520cf"
+    },
+    {
+      "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/fk/satellites/moon_080317.tf",
+      "sha256": "78732477b96f9863e7b0d65bcee3c22b8707ca5ed0db56d1173319cb2e8c7993"
+    },
+    {
+      "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/earth_1962_260806_2126_combined.bpc",
+      "sha256": "cc87ad1a495cf598800ba403763d350f087ac0b97da9fec603278a3864c6a53e"
+    },
+    {
+      "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/earth_000101_270208_261113.bpc",
+      "sha256": "6e77690ba455a644e509b0b9cb308b0dec1a7154ceecf3355659b917b21ca45e"
+    }
+  ],
+  "sha256": "f426d987d5175ae53c02dae64e736e2fc6a1dd34832ca17554abdedd7229005b"
+}

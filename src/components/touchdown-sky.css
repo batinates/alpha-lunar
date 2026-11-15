@@ -1,0 +1,28 @@
+.touchdown-sky { margin-block: 12px; }
+.touchdown-sky-heading, .touchdown-sky-controls, .touchdown-sky-time > span {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+.touchdown-sky-heading { margin-bottom: 10px; }
+.touchdown-sky-heading h3, .touchdown-sky-heading p, .touchdown-sky-controls p { margin: 0; }
+.touchdown-sky-heading time, .touchdown-compass, .touchdown-sky-time b { font: 600 12px/1.4 var(--mono); color: #bfeaf4; }
+.touchdown-sky-canvas { position: relative; touch-action: none; cursor: grab; background: #03060a; }
+.touchdown-sky-canvas:active { cursor: grabbing; }
+.touchdown-sky-canvas:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.touchdown-compass { position: absolute; top: 10px; left: 10px; display: flex; align-items: center; gap: 7px; padding: 7px; background: #081019db; border: 1px solid #34515f; border-radius: 5px; pointer-events: none; }
+.touchdown-sky-controls { justify-content: flex-end; margin: 8px 0; }
+.touchdown-sky-controls p { margin-right: auto; }
+.touchdown-sky-controls button, .touchdown-body button { display: inline-flex; align-items: center; gap: 8px; }
+.touchdown-sky-time { display: grid; gap: 6px; margin: 16px 0; }
+.touchdown-sky-time input { width: 100%; accent-color: var(--cyan); }
+.touchdown-sky-bodies { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+.touchdown-body { min-width: 0; padding: 12px; border: 1px solid #314757; background: #0a141f; }
+.touchdown-body > div { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.touchdown-body > div span { color: #a9bfcc; font-size: 12px; }
+.touchdown-body dl { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 5px 10px; margin: 12px 0; color: #a9bfcc; font-size: 12px; }
+.touchdown-body dd { margin: 0; color: #d6eaf4; font-family: var(--mono); }
+.touchdown-sky-source a { color: #9cdaeb; text-underline-offset: 3px; }
+@media (max-width: 550px) { .touchdown-sky-bodies { grid-template-columns: 1fr; } }

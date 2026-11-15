@@ -8,7 +8,7 @@ test('SPICE asset integrity and sampled interpolation validation',()=>{
  const provenance=JSON.parse(readFileSync('public/lunar/ephemeris-provenance.json','utf8'))
  assert.equal(createHash('sha256').update(readFileSync('public/lunar/ephemeris.json')).digest('hex'),provenance.sha256)
  assert.ok(provenance.maxMidpointAngularErrorDeg<.001)
- assert.equal(data.rows.length,17521)
+ assert.equal(data.rows.length,26305)
 })
 test('coverage includes both endpoints and rejects extrapolation',()=>{
  const start=Date.parse(data.start),end=start+(data.rows.length-1)*data.stepMs

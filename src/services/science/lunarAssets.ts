@@ -15,7 +15,10 @@ export function loadHeightRaster(region: 'global' | 'south-pole'): Promise<Heigh
       }
       return { width, height, values }
     })
-    cache.set(key, promise)
+    cache.set(key, promise.catch(error => {
+      cache.delete(key)
+      throw error
+    }))
   }
   return cache.get(key)!
 }
@@ -40,4 +43,12 @@ export function polarToLatLon(x:number,z:number) {
 export function polarHeight(raster:HeightRaster,x:number,z:number) {
   if(Math.abs(x)>POLAR_HALF_EXTENT||Math.abs(z)>POLAR_HALF_EXTENT)return null
   return sampleRaster(raster,(x/POLAR_HALF_EXTENT+1)/2,(z/POLAR_HALF_EXTENT+1)/2)
+}
+
+/** The screening horizon ends at the outer pixel centers, before edge clamping. */
+export function samplePolarHorizon(raster: HeightRaster, latitude: number, longitude: number) {
+  const { x, z } = latLonToPolar(latitude, longitude)
+  const edgeX = POLAR_HALF_EXTENT * (1 - 1 / raster.width)
+  const edgeZ = POLAR_HALF_EXTENT * (1 - 1 / raster.height)
+  return Math.abs(x) > edgeX || Math.abs(z) > edgeZ ? null : polarHeight(raster, x, z)
 }

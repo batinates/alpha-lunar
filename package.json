@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
+    "build:sites": "pnpm check && vite build --outDir dist/client --emptyOutDir && node scripts/build_sites_worker.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "check": "tsc -b",
     "test": "node --experimental-strip-types --test tests/*.test.mjs"

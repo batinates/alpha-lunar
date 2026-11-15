@@ -1,0 +1,623 @@
+{
+  "version": 1,
+  "windows": [
+    "2026-01-15",
+    "2026-07-15",
+    "2027-01-15",
+    "2027-07-15",
+    "2028-02-01",
+    "2028-11-15"
+  ],
+  "groups": [
+    {
+      "site": "All sites",
+      "body": "sun",
+      "angles": {
+        "azimuth": {
+          "count": 522,
+          "bias": 0.005692750492856586,
+          "mae": 0.005692750492856586,
+          "rmse": 0.005694657564762667,
+          "maxAbs": 0.005981780000411163
+        },
+        "elevation": {
+          "count": 522,
+          "bias": -0.00004050152505261071,
+          "mae": 0.00011863397778909401,
+          "rmse": 0.0001425467464595803,
+          "maxAbs": 0.00034032259839311685
+        },
+        "separation": {
+          "count": 522,
+          "bias": 0.005693597781891691,
+          "mae": 0.005693597781891691,
+          "rmse": 0.00569554950485781,
+          "maxAbs": 0.005984311295763929
+        }
+      },
+      "visibility": {
+        "complete": 75,
+        "total": 75,
+        "delta": {
+          "count": 75,
+          "bias": 2.759305096596133,
+          "mae": 2.7726007482367354,
+          "rmse": 3.4484636872789256,
+          "maxAbs": 7.913538178472859
+        }
+      }
+    },
+    {
+      "site": "All sites",
+      "body": "earth",
+      "angles": {
+        "azimuth": {
+          "count": 522,
+          "bias": 0.00019516702659560473,
+          "mae": 0.00019516702659560473,
+          "rmse": 0.0002054414012905869,
+          "maxAbs": 0.000290394789203674
+        },
+        "elevation": {
+          "count": 522,
+          "bias": 0.000004448811242860667,
+          "mae": 0.0000548480677373067,
+          "rmse": 0.00006012981789827971,
+          "maxAbs": 0.0001043132253517598
+        },
+        "separation": {
+          "count": 522,
+          "bias": 0.00020332359009050125,
+          "mae": 0.00020332359009050125,
+          "rmse": 0.00021324664214293575,
+          "maxAbs": 0.0002982013133881672
+        }
+      },
+      "visibility": {
+        "complete": 75,
+        "total": 75,
+        "delta": {
+          "count": 75,
+          "bias": 2.8856746764796024,
+          "mae": 2.9377249678012856,
+          "rmse": 3.8896676425575865,
+          "maxAbs": 12.666675252989876
+        }
+      }
+    },
+    {
+      "site": "Connecting Ridge",
+      "body": "sun",
+      "angles": {
+        "azimuth": {
+          "count": 174,
+          "bias": 0.005693095347879435,
+          "mae": 0.005693095347879435,
+          "rmse": 0.005695018751633018,
+          "maxAbs": 0.0059805664079704
+        },
+        "elevation": {
+          "count": 174,
+          "bias": -0.000026903359264985792,
+          "mae": 0.00010619007888330548,
+          "rmse": 0.00012208111110112742,
+          "maxAbs": 0.00021689726790430353
+        },
+        "separation": {
+          "count": 174,
+          "bias": 0.005693593762061856,
+          "mae": 0.005693593762061856,
+          "rmse": 0.0056955455706902,
+          "maxAbs": 0.005984309735108537
+        }
+      },
+      "visibility": {
+        "complete": 25,
+        "total": 25,
+        "delta": {
+          "count": 25,
+          "bias": 4.8280889052437885,
+          "mae": 4.8280889052437885,
+          "rmse": 4.905641311800993,
+          "maxAbs": 7.581942962281506
+        }
+      }
+    },
+    {
+      "site": "Connecting Ridge",
+      "body": "earth",
+      "angles": {
+        "azimuth": {
+          "count": 174,
+          "bias": 0.00019511856383219153,
+          "mae": 0.00019511856383219153,
+          "rmse": 0.00020540366403552904,
+          "maxAbs": 0.0002898605830523593
+        },
+        "elevation": {
+          "count": 174,
+          "bias": 0.000004999800734886756,
+          "mae": 0.00005490059733110366,
+          "rmse": 0.000060108385677790785,
+          "maxAbs": 0.00010323602695905265
+        },
+        "separation": {
+          "count": 174,
+          "bias": 0.00020332608682806753,
+          "mae": 0.00020332608682806753,
+          "rmse": 0.0002132485844352031,
+          "maxAbs": 0.0002981978502197886
+        }
+      },
+      "visibility": {
+        "complete": 25,
+        "total": 25,
+        "delta": {
+          "count": 25,
+          "bias": 4.253583219871199,
+          "mae": 4.253583219871199,
+          "rmse": 4.266326382820975,
+          "maxAbs": 4.962329346826117
+        }
+      }
+    },
+    {
+      "site": "Shackleton Rim",
+      "body": "sun",
+      "angles": {
+        "azimuth": {
+          "count": 174,
+          "bias": 0.005692840264666809,
+          "mae": 0.005692840264666809,
+          "rmse": 0.005694764211925403,
+          "maxAbs": 0.005981780000411163
+        },
+        "elevation": {
+          "count": 174,
+          "bias": -0.00003680526107774426,
+          "mae": 0.00011597802955178693,
+          "rmse": 0.00012479209202225845,
+          "maxAbs": 0.00019638554223400106
+        },
+        "separation": {
+          "count": 174,
+          "bias": 0.005693596344211133,
+          "mae": 0.005693596344211133,
+          "rmse": 0.005695548099371831,
+          "maxAbs": 0.005984311295763929
+        }
+      },
+      "visibility": {
+        "complete": 25,
+        "total": 25,
+        "delta": {
+          "count": 25,
+          "bias": 1.5996511499540003,
+          "mae": 1.6395381048758038,
+          "rmse": 2.0547197094660516,
+          "maxAbs": 3.7662152713891413
+        }
+      }
+    },
+    {
+      "site": "Shackleton Rim",
+      "body": "earth",
+      "angles": {
+        "azimuth": {
+          "count": 174,
+          "bias": 0.00019509820450646175,
+          "mae": 0.00019509820450646175,
+          "rmse": 0.0002054557897559398,
+          "maxAbs": 0.000290394789203674
+        },
+        "elevation": {
+          "count": 174,
+          "bias": 0.00000614058485377806,
+          "mae": 0.00005487316456085726,
+          "rmse": 0.000059972592822580035,
+          "maxAbs": 0.0001043132253517598
+        },
+        "separation": {
+          "count": 174,
+          "bias": 0.00020332800749296313,
+          "mae": 0.00020332800749296313,
+          "rmse": 0.00021325071200052422,
+          "maxAbs": 0.0002982013133881672
+        }
+      },
+      "visibility": {
+        "complete": 25,
+        "total": 25,
+        "delta": {
+          "count": 25,
+          "bias": 3.9744362097516057,
+          "mae": 3.9752622631094723,
+          "rmse": 4.556570552466303,
+          "maxAbs": 5.976500459981601
+        }
+      }
+    },
+    {
+      "site": "de Gerlache Rim",
+      "body": "sun",
+      "angles": {
+        "azimuth": {
+          "count": 174,
+          "bias": 0.005692315866023516,
+          "mae": 0.005692315866023516,
+          "rmse": 0.005694189699057088,
+          "maxAbs": 0.005977082845788573
+        },
+        "elevation": {
+          "count": 174,
+          "bias": -0.000057795954815102076,
+          "mae": 0.00013373382493218964,
+          "rmse": 0.0001745905520343469,
+          "maxAbs": 0.00034032259839311685
+        },
+        "separation": {
+          "count": 174,
+          "bias": 0.0056936032394020895,
+          "mae": 0.0056936032394020895,
+          "rmse": 0.005695554844507361,
+          "maxAbs": 0.005984300559656653
+        }
+      },
+      "visibility": {
+        "complete": 25,
+        "total": 25,
+        "delta": {
+          "count": 25,
+          "bias": 1.8501752345906133,
+          "mae": 1.8501752345906133,
+          "rmse": 2.718182415314919,
+          "maxAbs": 7.913538178472859
+        }
+      }
+    },
+    {
+      "site": "de Gerlache Rim",
+      "body": "earth",
+      "angles": {
+        "azimuth": {
+          "count": 174,
+          "bias": 0.0001952843114481609,
+          "mae": 0.0001952843114481609,
+          "rmse": 0.00020546474478426295,
+          "maxAbs": 0.0002894376345921046
+        },
+        "elevation": {
+          "count": 174,
+          "bias": 0.0000022060481399171876,
+          "mae": 0.000054770441319959186,
+          "rmse": 0.00006030800181392034,
+          "maxAbs": 0.00010028446287702053
+        },
+        "separation": {
+          "count": 174,
+          "bias": 0.00020331667595047364,
+          "mae": 0.00020331667595047364,
+          "rmse": 0.0002132406298606424,
+          "maxAbs": 0.0002981932440310337
+        }
+      },
+      "visibility": {
+        "complete": 25,
+        "total": 25,
+        "delta": {
+          "count": 25,
+          "bias": 0.42900459981600164,
+          "mae": 0.5843294204231885,
+          "rmse": 2.534692704120386,
+          "maxAbs": 12.666675252989876
+        }
+      }
+    }
+  ],
+  "queries": [
+    {
+      "site": "Connecting Ridge",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27258.11134196%2C-89.35969194%2C0.70554688%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272026-01-15+00%3A30%27&STOP_TIME=%272026-01-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "be6a60a43fac97ecbbaa8cc1ede16beb0fadf5baf8d6b0f07a0937c2db8c43ca"
+    },
+    {
+      "site": "Connecting Ridge",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27258.11134196%2C-89.35969194%2C0.70554688%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272026-07-15+00%3A30%27&STOP_TIME=%272026-07-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "17776c9e2fd7c27ba44d82ebb2f5b367d310ebb4a58f201c13372ce62608aa4f"
+    },
+    {
+      "site": "Connecting Ridge",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27258.11134196%2C-89.35969194%2C0.70554688%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272027-01-15+00%3A30%27&STOP_TIME=%272027-01-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "a1f2294769ae9041bac2ed1311777be7021befbbbf46183218d28b594889fdfe"
+    },
+    {
+      "site": "Connecting Ridge",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27258.11134196%2C-89.35969194%2C0.70554688%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272027-07-15+00%3A30%27&STOP_TIME=%272027-07-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "58d81042dab723a25c7df4bf9b9c1d0d1a680f2530257daf47470e5bf3de4a63"
+    },
+    {
+      "site": "Connecting Ridge",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27258.11134196%2C-89.35969194%2C0.70554688%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272028-02-01+00%3A30%27&STOP_TIME=%272028-02-08+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "f0881765b4ea9f9a90864bbd414b8b803b3b8f82d17af7877faf4bfafe767693"
+    },
+    {
+      "site": "Connecting Ridge",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27258.11134196%2C-89.35969194%2C0.70554688%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272028-11-15+00%3A30%27&STOP_TIME=%272028-11-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "2a2f2b607c87f92737fe48b117dfa252424db91b7b5b60d1caadfb78ba64d41c"
+    },
+    {
+      "site": "Connecting Ridge",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27258.11134196%2C-89.35969194%2C0.70554688%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272026-01-15+00%3A30%27&STOP_TIME=%272026-01-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "c4a5361bfaf645a63ebbf8c4243f8fca1444814ff7edfc627879682ec720aea2"
+    },
+    {
+      "site": "Connecting Ridge",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27258.11134196%2C-89.35969194%2C0.70554688%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272026-07-15+00%3A30%27&STOP_TIME=%272026-07-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "4926f28d1483ce9333be3cd72713b1f150a64d227e51f1144c1e026c29f00fb7"
+    },
+    {
+      "site": "Connecting Ridge",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27258.11134196%2C-89.35969194%2C0.70554688%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272027-01-15+00%3A30%27&STOP_TIME=%272027-01-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "da8d7726c712684dfaa9b7179cbef9e40365e8c280c6fbac51e10784c875c85c"
+    },
+    {
+      "site": "Connecting Ridge",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27258.11134196%2C-89.35969194%2C0.70554688%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272027-07-15+00%3A30%27&STOP_TIME=%272027-07-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "eabff6f1d28a70e1d25a7865f4bbf1c7f67ebb67e69d65319ae1a4069bece932"
+    },
+    {
+      "site": "Connecting Ridge",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27258.11134196%2C-89.35969194%2C0.70554688%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272028-02-01+00%3A30%27&STOP_TIME=%272028-02-08+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "850462550fd4a9618c63e20fde39bb45187aa2c384342ba7b3ac7fa43b4f2f7b"
+    },
+    {
+      "site": "Connecting Ridge",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27258.11134196%2C-89.35969194%2C0.70554688%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272028-11-15+00%3A30%27&STOP_TIME=%272028-11-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "1511f18cc2724417525441b742ac79c6d5d9eddb31971951e21abcdb77eddda0"
+    },
+    {
+      "site": "Shackleton Rim",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27276.34019175%2C-89.70137322%2C-0.40389844%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272026-01-15+00%3A30%27&STOP_TIME=%272026-01-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "04b643e5c973b0d9464ff963124618fdd4b454424e98dfd4b27e02aba229e5ed"
+    },
+    {
+      "site": "Shackleton Rim",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27276.34019175%2C-89.70137322%2C-0.40389844%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272026-07-15+00%3A30%27&STOP_TIME=%272026-07-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "813be3266b9939efc9c4a9edb038c5367e773b6d1d09407bc6fba9b05bbd47f6"
+    },
+    {
+      "site": "Shackleton Rim",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27276.34019175%2C-89.70137322%2C-0.40389844%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272027-01-15+00%3A30%27&STOP_TIME=%272027-01-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "6c468bd2136b60f08aa8d7b508730d401babcbac94eacd4ebd5334c8a92ae0e7"
+    },
+    {
+      "site": "Shackleton Rim",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27276.34019175%2C-89.70137322%2C-0.40389844%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272027-07-15+00%3A30%27&STOP_TIME=%272027-07-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "99de2544b529abf8814b1c8ca9bdde5e9465cc297a9da38bad68099bfe80b52e"
+    },
+    {
+      "site": "Shackleton Rim",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27276.34019175%2C-89.70137322%2C-0.40389844%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272028-02-01+00%3A30%27&STOP_TIME=%272028-02-08+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "f811253824e49edcf52de8124c622d00311280b7b5210c7714a4396de5b11841"
+    },
+    {
+      "site": "Shackleton Rim",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27276.34019175%2C-89.70137322%2C-0.40389844%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272028-11-15+00%3A30%27&STOP_TIME=%272028-11-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "ea392615460b4a40cb1204da19beb163f3010228df13778b9f0a9574e0a95147"
+    },
+    {
+      "site": "Shackleton Rim",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27276.34019175%2C-89.70137322%2C-0.40389844%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272026-01-15+00%3A30%27&STOP_TIME=%272026-01-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "c2d13d948b0794bccc244c2dc64cf161e6f9545a05a4780eb0afbb7fead7f8c6"
+    },
+    {
+      "site": "Shackleton Rim",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27276.34019175%2C-89.70137322%2C-0.40389844%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272026-07-15+00%3A30%27&STOP_TIME=%272026-07-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "d5ac8069ddedebdfe8db115ffdfe28a22167fe3ea41dd12a1b5b6b9cf392683f"
+    },
+    {
+      "site": "Shackleton Rim",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27276.34019175%2C-89.70137322%2C-0.40389844%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272027-01-15+00%3A30%27&STOP_TIME=%272027-01-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "a99004301f893e817e82b3b92f3d9940260cf91a0f8b85d5c003c149399143ef"
+    },
+    {
+      "site": "Shackleton Rim",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27276.34019175%2C-89.70137322%2C-0.40389844%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272027-07-15+00%3A30%27&STOP_TIME=%272027-07-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "c924f9f8d609e090928e56d612b639a2b32f9a5a5add47b5d4eb3637332b10a6"
+    },
+    {
+      "site": "Shackleton Rim",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27276.34019175%2C-89.70137322%2C-0.40389844%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272028-02-01+00%3A30%27&STOP_TIME=%272028-02-08+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "3f45af8d30865e3df38ee744a6d5dc9b247635681c47dd7dfc3867695efefe98"
+    },
+    {
+      "site": "Shackleton Rim",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27276.34019175%2C-89.70137322%2C-0.40389844%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272028-11-15+00%3A30%27&STOP_TIME=%272028-11-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "e81b5141e56821cb5d42a325556bfdff13b5745e70b0666cf2e914a871c29e27"
+    },
+    {
+      "site": "de Gerlache Rim",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27297.07208024%2C-88.33351026%2C0.38526953%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272026-01-15+00%3A30%27&STOP_TIME=%272026-01-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "fb8e8c3af22f4162bd68fbb0ee248d68491abd8578498a06fdb5a14957c33219"
+    },
+    {
+      "site": "de Gerlache Rim",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27297.07208024%2C-88.33351026%2C0.38526953%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272026-07-15+00%3A30%27&STOP_TIME=%272026-07-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "cd092f6738572048b4d8b33940c8837a8a039f01d8bae5ae8f28f71e8512e35b"
+    },
+    {
+      "site": "de Gerlache Rim",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27297.07208024%2C-88.33351026%2C0.38526953%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272027-01-15+00%3A30%27&STOP_TIME=%272027-01-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "99549b6641f77948e5af48497fb1a27acde36c46e4626fa7b6a876cab2397ad1"
+    },
+    {
+      "site": "de Gerlache Rim",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27297.07208024%2C-88.33351026%2C0.38526953%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272027-07-15+00%3A30%27&STOP_TIME=%272027-07-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "9a0aec1721b62e041429acb1c0b90863f2b08426ea3ed85e5f74f76c9a563aac"
+    },
+    {
+      "site": "de Gerlache Rim",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27297.07208024%2C-88.33351026%2C0.38526953%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272028-02-01+00%3A30%27&STOP_TIME=%272028-02-08+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "4dcbe9863b35b0bee7cb3cdfa6445e4a27725e5251fb434e2938cae185903f89"
+    },
+    {
+      "site": "de Gerlache Rim",
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%2710%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27297.07208024%2C-88.33351026%2C0.38526953%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272028-11-15+00%3A30%27&STOP_TIME=%272028-11-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "fc6ae69c7b8845dac083ad35e1988aff7ba6488a5238eaeac915259819dd1449"
+    },
+    {
+      "site": "de Gerlache Rim",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27297.07208024%2C-88.33351026%2C0.38526953%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272026-01-15+00%3A30%27&STOP_TIME=%272026-01-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "e6601ef26b9a401758b9eb6f9e035a08b373ba3231d12917e6cca78d0a91dc17"
+    },
+    {
+      "site": "de Gerlache Rim",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27297.07208024%2C-88.33351026%2C0.38526953%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272026-07-15+00%3A30%27&STOP_TIME=%272026-07-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "a704a0ac253bc1808bb6e0f6d8b53aadde42cebc951a2b830614a83b5d93d5b4"
+    },
+    {
+      "site": "de Gerlache Rim",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27297.07208024%2C-88.33351026%2C0.38526953%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272027-01-15+00%3A30%27&STOP_TIME=%272027-01-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "b96549a455f1926a32051e840010fbe0c8533e63501bc150fcaf3e57e1ffba71"
+    },
+    {
+      "site": "de Gerlache Rim",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27297.07208024%2C-88.33351026%2C0.38526953%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272027-07-15+00%3A30%27&STOP_TIME=%272027-07-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "0db372f93fd837d93513dff3a864e4ebeb29ff48cff9c073bfaf3be616cd38f7"
+    },
+    {
+      "site": "de Gerlache Rim",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27297.07208024%2C-88.33351026%2C0.38526953%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272028-02-01+00%3A30%27&STOP_TIME=%272028-02-08+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "a461c099621b57744200b4e9d96b3e07b9a37f4fe7acafb0e50896fad33c168b"
+    },
+    {
+      "site": "de Gerlache Rim",
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%27297.07208024%2C-88.33351026%2C0.38526953%27&EPHEM_TYPE=%27OBSERVER%27&START_TIME=%272028-11-15+00%3A30%27&STOP_TIME=%272028-11-22+00%3A30%27&STEP_SIZE=%276+h%27&MAKE_EPHEM=%27YES%27&OBJ_DATA=%27NO%27&QUANTITIES=%274%27&CSV_FORMAT=%27YES%27&EXTRA_PREC=%27YES%27&APPARENT=%27AIRLESS%27",
+      "model": "DE441",
+      "rawSha256": "5cc6110f7ca7127b58d5bcb9704ef959c16c1298855d1c6772457593adfcd369"
+    }
+  ],
+  "longPeriod": {
+    "start": "2026-01-01T00:00:00+00:00",
+    "end": "2044-08-07T18:00:00+00:00",
+    "stepHours": 6,
+    "count": 27175,
+    "frame": "MOON_ME_DE421",
+    "correction": "NONE",
+    "sampling": "interval midpoints",
+    "spiceypy": "8.4.0",
+    "numpy": "2.3.5",
+    "sources": [
+      {
+        "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/lsk/naif0012.tls",
+        "sha256": "678e32bdb5a744117a467cd9601cd6b373f0e9bc9bbde1371d5eee39600a039b"
+      },
+      {
+        "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/a_old_versions/de421.bsp",
+        "sha256": "08b20db2ae22488650641c5a9033e5bfda4b1c4b440cfeaf20f621cfa18ecdb3"
+      },
+      {
+        "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/moon_pa_de421_1900-2050.bpc",
+        "sha256": "656f90616403d75a75f0cd6c8830fc5b44f8cb4facb5ccb8915e752b397520cf"
+      },
+      {
+        "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/fk/satellites/moon_080317.tf",
+        "sha256": "78732477b96f9863e7b0d65bcee3c22b8707ca5ed0db56d1173319cb2e8c7993"
+      }
+    ],
+    "sha256": "63ca412c2423a7e2c47727928e386e10139d22fd65416159bda0e4b0f9b2449e"
+  },
+  "pgda": [
+    {
+      "product": "AVGVISIB_85S_060M_201608",
+      "image": "https://imbrium.mit.edu/EXTRAS/ILLUMINATION/IMG/AVGVISIB_85S_060M_201608.IMG",
+      "label": "https://imbrium.mit.edu/EXTRAS/ILLUMINATION/IMG/AVGVISIB_85S_060M_201608.LBL",
+      "imageSha256": "82dadf321dee28f1947c1fed81858d4cf50fe8eb2aa405aae114e8ab21c1efe1",
+      "labelSha256": "33decce957d5d4d9608557d8d969d1e1b94056a159b2563624ade4b528a0c917"
+    },
+    {
+      "product": "AVGVISIB_85S_060M_201608_EARTH",
+      "image": "https://imbrium.mit.edu/EXTRAS/ILLUMINATION/IMG/AVGVISIB_85S_060M_201608_EARTH.IMG",
+      "label": "https://imbrium.mit.edu/EXTRAS/ILLUMINATION/IMG/AVGVISIB_85S_060M_201608_EARTH.LBL",
+      "imageSha256": "0958313069d6039b2474c875ff662f28dbcba2bd853d9ea458aa807b7948c11f",
+      "labelSha256": "45a61697d779fdb9170bca2553f9e0188aeda1159811d3531c348df8f57f68bd"
+    }
+  ],
+  "assets": {
+    "ephemerisSha256": "19d0160c73d067655f233ed1a1440294f67260435f281669d28310fa103894c0",
+    "demSha256": "e93c5cb6f21ae356345250f1712b5d09dc7c51e9ac793cef66aa324effd52bee",
+    "anglesCsvSha256": "756f3d50a12cb2b08cc80b08a2db3edfaa98a01126ee577358a1deb5af351f48",
+    "visibilityCsvSha256": "0a4c41bc2270daf3d90cac8af64123da59092100c1df8b237b00c1b846922da7"
+  }
+}

@@ -1,0 +1,110 @@
+[
+  {
+    "id": "intro",
+    "label": "NASA SPACE APPS CHALLENGE",
+    "title": "Ay’a nereye ve ne zaman inmeliyiz?",
+    "lead": "ALPHA LUNAR, Ay’ın Güney Kutbu’nda saha ve tarih seçimini 3B harita, görev analizleri ve kaynaklı raporlarla destekleyen bir web uygulaması.",
+    "cards": [
+      ["Saha", "Aday bölgeleri gerçek Ay topografyasında incele."],
+      ["Zaman", "Aynı UTC aralığında Güneş ve Dünya görüşünü karşılaştır."],
+      ["Karar", "Kısıtları, sonuçları ve veri kaynaklarını raporla."]
+    ],
+    "sources": [["Lunar Landing Site Navigator", "https://www.spaceappschallenge.org/2026/challenges/lunar-landing-site-navigator/"]]
+  },
+  {
+    "id": "need",
+    "label": "NEDEN YAPTIK?",
+    "title": "Güney Kutbu’nda uygun saha, tarihe göre değişir",
+    "lead": "Güneş ve Dünya ufka yakın görünür. Bir sırt panel gücünü düşürebilir, bir krater kenarı Dünya görüşünü kesebilir. İnişe uygun eğim, yüzey operasyonu boyunca enerji ve haberleşme sağlanacağı anlamına gelmez.",
+    "cards": [
+      ["Arazi", "Eğim ve pürüzlülük, bir aracın nerede iniş yapabileceğini sınırlar."],
+      ["Enerji", "Gölge süresi ve en uzun kesinti, batarya ihtiyacını değiştirir."],
+      ["Haberleşme", "Yerel ufuk, Dünya’nın ne zaman görüldüğünü değiştirir. Radyo marjı ayrıca hesaplanır."]
+    ],
+    "sources": [["NASA · Güney Kutbu çevresi", "https://www.nasa.gov/reference/moonbase-environment/"], ["NASA Glenn · Yüzey haberleşmesi", "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/scan/lunar-surface-propagation/"]]
+  },
+  {
+    "id": "audience",
+    "label": "SPACE APPS GÖREVİ",
+    "title": "Bir saha ve tarih karşılaştırması kimin işine yarar?",
+    "lead": "NASA’nın Lunar Landing Site Navigator görevi, mevcut Güneş ve Dünya konum araçlarının karmaşık arayüzlerine dikkat çekiyor. Hızlı saha ve tarih karşılaştırması, ön değerlendirmede ve eğitimde aynı ihtiyaca cevap veriyor.",
+    "cards": [
+      ["Görev ekipleri", "Aynı UTC aralığında sahaları tarar, kesintileri ve elenme gerekçelerini inceler."],
+      ["Eğitimciler", "Bir saha veya tarih değişikliğinin enerji ve Dünya görüşüne etkisini gösterir."],
+      ["Meraklılar", "3B Ay’da bölgeyi bulur ve seçilen iniş noktasını kaynaklarıyla keşfeder."]
+    ],
+    "sources": [["NASA Space Apps · Görev tanımı", "https://www.spaceappschallenge.org/2026/challenges/lunar-landing-site-navigator/"]]
+  },
+  {
+    "id": "workflow",
+    "label": "UYGULAMA AKIŞI",
+    "title": "Haritadan karşılaştırmaya, simülasyondan rapora",
+    "lead": "Konumu, UTC aralığını ve araç varsayımlarını seç. Sonuçlar aynı senaryo üzerinden harita, zaman çizelgesi ve raporda izlenebilir.",
+    "cards": [
+      ["Keşfet", "3B Ay ve Güney Kutbu atlası, İniş Sahası Arşivi, seçili sahalarda 80 m ve 20 m bölgesel arazi görselleri."],
+      ["Karşılaştır", "Eğim, ufuk, Güneş diski, batarya, Dünya görüşü ve radyo marjı. Görev profiline göre aday ön elemesi."],
+      ["İncele ve paylaş", "3B alçalma, risk kaydı ve Monte Carlo. Görev raporunu JSON olarak indir veya PDF olarak yazdır."]
+    ],
+    "sources": []
+  },
+  {
+    "id": "updates",
+    "label": "SON GELİŞTİRMELER",
+    "title": "Görevleri ve inişi Ay arazisinde incele",
+    "lead": "Artemis görev incelemesi, etkileşimli yörünge görev kartları ve araziye oturan iniş simülasyonu aynı uygulamada.",
+    "cards": [
+      ["Artemis III–V", "III için yörünge testi, araç verileri ve görev zaman çizelgesi. IV ve V için 2028 saha çalışmaları ve kaynaklı görev kartları."],
+      ["3B simülasyon ve Ay görevleri", "Apollo veya roket görseli, Ay eğriliği, hedef halkası ve temas koordinatları. LRO ve LADEE seçildiğinde görev ayrıntıları açılır."],
+      ["Arşiv ve dil", "Tarihsel ve aday sahalar, saha bağlamı ve kaynak kayıtları. Uygulama arayüzünde TR/EN seçimi."]
+    ],
+    "sources": [["NASA · Artemis mimari güncellemesi", "https://www.nasa.gov/missions/artemis/nasa-shares-plans-to-accelerate-artemis-return-to-moon/"]]
+  },
+  {
+    "id": "moon-ai",
+    "label": "MOON AI",
+    "title": "Bir sorudan hesaplanmış senaryoya",
+    "lead": "“Shackleton için Apollo görselli inişi simüle et. Hangi riskler öne çıkıyor?” Claude, uygulamanın analiz araçlarını çağırıp dönen sonuçları açıklar.",
+    "cards": [
+      ["Veriye ulaş", "Saha ara, adayları ele, kaynakları ve termal bağlamı incele."],
+      ["Hesaplat", "İniş senaryolarını çalıştır veya iki sahanın operasyonlarını karşılaştır."],
+      ["Sonucu aç", "Sohbetten ilgili haritaya, simülasyona ya da risk paneline seçili senaryo ile geç. Canlı Claude sohbeti erişim koduyla açılır."]
+    ],
+    "sources": []
+  },
+  {
+    "id": "proof",
+    "label": "VERİ VE DOĞRULAMA",
+    "title": "Sonucun kaynağını ve sınırını gösteriyoruz",
+    "lead": "LOLA, Diviner ve SPICE/DE421 analizleri kaynaklarıyla yayımlanır. Shackleton Rim’de iki tarihli LROC görüntüsüyle aydınlık ve gölge sınıfları %85,6 ve %68,6 oranında eşleşti.",
+    "cards": [
+      ["40 m → 160 m", "LOLA Güney Kutbu kaynak ızgarası ve uygulamanın ana analiz ızgarası. Bu ölçek bölgesel ön eleme içindir."],
+      ["1.044 açı eşleşmesi", "Üç sahada JPL Horizons ile Güneş ve Dünya yönleri karşılaştırıldı."],
+      ["75 nokta / cisim", "NASA PGDA referansına göre görünürlükte ortalama mutlak fark Güneş için 2,77; Dünya için 2,94 yüzde puanı."]
+    ],
+    "sources": [["Proje doğrulama raporu (JSON)", "/lunar/validation/report.json"], ["JPL Horizons", "https://ssd.jpl.nasa.gov/horizons/manual.html"], ["NASA GSFC · PGDA 69", "https://pgda.gsfc.nasa.gov/products/69"], ["Tarihli LROC karşılaştırması (JSON)", "/lunar/validation/lroc.json"]]
+  },
+  {
+    "id": "demo",
+    "label": "JÜRİ DEMOSU",
+    "title": "İki saha, bir UTC aralığı, izlenebilir karar",
+    "lead": "Örnek çalışma: Haworth ve Mons Mouton, 1 Şubat 2028 00.00 UTC’den itibaren 72 saat. Bu iki bölge tarihsel NASA çalışma alanıdır. Tarih ve süre demo varsayımlarıdır.",
+    "cards": [
+      ["01 · Karşılaştır", "Aynı aralıkta görünür Güneş süresini, en uzun kesintiyi, batarya ve Dünya görüşünü incele."],
+      ["02 · Simüle et", "Shackleton örneğinde üç senaryoda eşik içinde kalan koşu sayısı 493, 512 ve 573 oldu. Her senaryoda 600 koşu hesaplandı."],
+      ["03 · Raporla", "Kaynak, çözünürlük, zaman kapsamı ve varsayımları göster. Kalıcı gölge ve soğuk tuzak verisini sahada buz miktarı bilinmiyor olarak yorumla."]
+    ],
+    "sources": [["NASA · 2024 tarihsel saha çalışması", "https://www.nasa.gov/news-release/nasa-provides-update-on-artemis-iii-moon-landing-regions/"]]
+  },
+  {
+    "id": "impact",
+    "label": "BEKLENEN ETKİ",
+    "title": "Adayları eleme gerekçesini ortak bir ekranda görün",
+    "lead": "Hedef, ekiplerin farklı kaynaklar arasında veri taşımadan aynı saha ve tarih üzerinde konuşabilmesi. Eğitimde aynı akış, arazi ile enerji ve haberleşme arasındaki ilişkiyi görünür kılar.",
+    "cards": [
+      ["Bugünkü kapsam", "Saha ve zaman ön elemesi, çalışma senaryoları ve eğitim. Monte Carlo sayıları model eşiklerini özetler."],
+      ["Etkiyi nasıl ölçeceğiz?", "Aynı karşılaştırma görevinde süreyi, doğru yorum oranını ve kaynaklara ulaşma adımlarını gözlemleyeceğiz."],
+      ["Sonraki doğrulama", "Daha çok saha ve tarihte açı, görünürlük ve görüntü kontrolleri. Görev ekipleri ve eğitimcilerle pilot oturumlar."]
+    ],
+    "sources": []
+  }
+]

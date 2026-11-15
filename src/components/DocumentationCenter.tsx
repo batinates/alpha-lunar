@@ -1,14 +1,18 @@
+import { useEffect } from 'react'
 import {
   ArrowRight, BookOpen, Check, ChevronRight, CircleDashed, Database, ExternalLink,
   FileCheck2, Layers3, Map, MousePointer2, Orbit, Rocket, Search, ShieldCheck,
   Sparkles, Sun, X,
 } from 'lucide-react'
 import type { ExplorerMode } from '../domain/lunar'
+import { ExternalValidation } from './ExternalValidation'
+import { ProjectPresentation } from './ProjectPresentation'
 
 type DocumentationCenterProps = {
   open: boolean
   onClose: () => void
   onExplore: (mode: ExplorerMode) => void
+  onMoonAi: () => void
 }
 
 const phases = [
@@ -21,31 +25,31 @@ const phases = [
     no: '02', status: 'active', label: 'AKTİF', title: 'NASA yüzey atlası',
     summary: 'LROC ve LOLA kaynaklarının doğrulanabilir bir veri hattıyla gerçek zamanlı 3B yüzeye dönüştürülmesi.',
     items: ['LROC 8K küresel mozaik', 'LOLA küresel yükselti', '40 m kaynaklı kutup DEM ürünü', 'Kaynak manifestosu ve checksum doğrulaması'],
-    next: 'Sıradaki: çok seviyeli detay (LOD), karo akışı ve daha geniş kutup ürün kataloğu.',
+    next: 'Bölgesel Arazi Detayı; seçili sahalarda 80 m ve 20 m arazi katmanlarını açar.',
   },
   {
     no: '03', status: 'active', label: 'AKTİF', title: 'Aydınlatma ve görünürlük',
     summary: 'Tarih/saat kontrollü Güneş geometrisi, arazi gölgeleri ve Dünya görüş hattı.',
     items: ['SPICE zaman/geometri çekirdeği', 'Güneş açısı ve gölge süresi', 'Dünya iletişim görünürlüğü', 'Zaman çizelgesi karşılaştırması'],
-    next: 'Hazır: SPICE zaman gezgini, küresel Güneş yönü ve örneklenmiş bölgesel DEM ufku. 2/5/10 m gözlemci, 100 km tarama ve 28 günlük merkez açıklığı eklendi. Bekleyen: disk/tutulma modeli, gölge süreleri ve dış bilimsel doğrulama.',
+    next: 'Dış referans kontrolleri: JPL Horizons açıları, NASA PGDA uzun dönem görünürlüğü ve Shackleton Rim’de iki tarihli LROC WAC gölge karşılaştırması.',
   },
   {
-    no: '04', status: 'planned', label: 'PLANLANDI', title: 'Bilimsel arazi zekâsı',
+    no: '04', status: 'active', label: 'AKTİF', title: 'Bilimsel arazi analizi',
     summary: 'Eğim, pürüzlülük, termal koşullar, kalıcı gölge ve su-buzu kanıt katmanları.',
-    items: ['Arazi güvenlik metrikleri', 'Diviner termal katmanları', 'PSR ve uçucu madde katmanları', 'Belirsizlik ve güven puanı'],
+    items: ['LOLA eğim ve pürüzlülük ön elemesi', 'Diviner termal özetleri', 'Kalıcı gölge, soğuk tuzak ve LCROSS', 'Kaynak, kapsama ve örnekleme bilgisi'],
   },
   {
-    no: '05', status: 'planned', label: 'PLANLANDI', title: 'Görev yapılandırma',
+    no: '05', status: 'active', label: 'AKTİF', title: 'Görev planlama ve iniş optimizasyonu',
     summary: 'Araç, mürettebat, güç, iletişim ve bilim hedefleriyle aday bölge karşılaştırması.',
     items: ['Görev profilleri', 'Uzay aracı kısıtları', 'Artemis araştırma görünümü', 'Çok ölçütlü iniş optimizasyonu'],
   },
   {
-    no: '06', status: 'planned', label: 'PLANLANDI', title: 'İniş simülasyonu ve risk',
+    no: '06', status: 'active', label: 'AKTİF', title: 'İniş simülasyonu ve risk',
     summary: 'Dağılım, sapma ve sistem belirsizliklerini değerlendiren tekrarlanabilir senaryolar.',
     items: ['Monte Carlo koşuları', 'İniş elipsi ve saçılım', 'Risk kayıtları', 'Senaryo karşılaştırması'],
   },
   {
-    no: '07', status: 'planned', label: 'PLANLANDI', title: 'Raporlama ve doğrulama',
+    no: '07', status: 'active', label: 'AKTİF', title: 'Raporlama ve doğrulama',
     summary: 'Karar izini, performansı ve bilimsel kaynakları bir araya getiren son ürün katmanı.',
     items: ['Görev raporu üretimi', 'Bilimsel doğrulama', 'Performans ve erişilebilirlik', 'Operasyon ve geliştirici belgeleri'],
   },
@@ -64,27 +68,41 @@ const glossary = [
   ['Monte Carlo', 'Belirsiz girdileri çok sayıda örnekleyerek sonuç dağılımı üreten simülasyon yaklaşımı.'],
 ]
 
-export function DocumentationCenter({ open, onClose, onExplore }: DocumentationCenterProps) {
+export function DocumentationCenter({ open, onClose, onExplore, onMoonAi }: DocumentationCenterProps) {
+  useEffect(() => {
+    if (!open || !window.location.hash) return
+    const frame = requestAnimationFrame(() => {
+      document.getElementById(window.location.hash.slice(1))?.scrollIntoView({ behavior: 'instant' })
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [open])
+
   if (!open) return null
 
   const goExplore = (mode: ExplorerMode) => {
     onExplore(mode)
     onClose()
   }
+  const goMoonAi = () => {
+    onClose()
+    onMoonAi()
+  }
 
   return (
-    <div className="docs-shell" role="dialog" aria-modal="true" aria-label="ALPHA LUNAR Dokümantasyon Merkezi">
+    <div className="docs-shell" role="dialog" lang="tr" aria-modal="true" aria-label="ALPHA LUNAR Dokümantasyon Merkezi">
       <header className="docs-topbar">
         <a className="docs-wordmark" href="#overview" aria-label="Dokümantasyon başlangıcı">
           <span className="docs-wordmark__glyph"><Orbit size={17} /></span>
-          <span><b>ALPHA LUNAR</b><small>MISSION HANDBOOK / TR</small></span>
+          <span><b>ALPHA LUNAR</b><small>PROJE SUNUMU VE KILAVUZ</small></span>
         </a>
-        <div className="docs-release"><i /> PHASE 03 · SPICE TIME EXPLORER</div>
+        <div className="docs-release"><i /> NASA SPACE APPS CHALLENGE</div>
         <button className="docs-close" onClick={onClose}><X size={17} /><span>ATLASA DÖN</span></button>
       </header>
 
       <aside className="docs-nav">
         <div className="docs-nav__label">İÇİNDEKİLER</div>
+        <a href="#presentation"><span>↗</span> Space Apps sunumu</a>
+        <a href="/sunum"><span>↗</span> Kısa jüri sunumu</a>
         <a href="#overview"><span>01</span> Genel durum</a>
         <a href="#delivered"><span>02</span> Geliştirilenler</a>
         <a href="#roadmap"><span>03</span> 7 faz yol haritası</a>
@@ -92,46 +110,50 @@ export function DocumentationCenter({ open, onClose, onExplore }: DocumentationC
         <a href="#architecture"><span>05</span> Sistem mimarisi</a>
         <a href="#nasa-role"><span>06</span> NASA / Artemis rolü</a>
         <a href="#integrity"><span>07</span> Bilimsel sınırlar</a>
-        <a href="#glossary"><span>08</span> Terimler ve kaynaklar</a>
+        <a href="#validation"><span>08</span> Bilimsel doğrulama</a>
+        <a href="#glossary"><span>09</span> Terimler ve kaynaklar</a>
         <div className="docs-nav__status">
-          <small>SÜRÜM DURUMU</small><strong><i /> YAYINDA</strong><span>12 KASIM 2026</span>
+          <small>SON GÜNCELLEME</small><strong><i /> MOON AI · CANLI</strong>
         </div>
       </aside>
 
       <main className="docs-main">
         <section className="docs-hero" id="overview">
-          <div className="docs-kicker"><span>PROGRAM RAPORU</span><i /> SÜRÜM 2.0</div>
-          <h1>Ay görev kararları için<br/><em>görsel bir dijital ikiz temeli.</em></h1>
-          <p>ALPHA LUNAR; Ay yüzeyini, kaynak verisini ve ileride eklenecek görev analizlerini tek bir izlenebilir çalışma alanında birleştiren web tabanlı bir görev istihbaratı platformudur.</p>
+          <div className="docs-kicker"><span>NASA SPACE APPS CHALLENGE</span><i /> LUNAR LANDING SITE NAVIGATOR</div>
+          <h1>Ay’a nereye ve ne zaman inmeliyiz?</h1>
+          <p>ALPHA LUNAR, Ay’ın Güney Kutbu’nda saha ve tarih seçimini 3B harita, görev analizleri, Moon AI ve kaynaklı raporlarla destekler.</p>
           <div className="docs-hero__actions">
+            <a className="docs-hero-presentation" href="/sunum"><BookOpen size={15} /> KISA JÜRİ SUNUMUNU AÇ</a>
             <button onClick={() => goExplore('global')}><Orbit size={15} /> KÜRESEL AY’I AÇ</button>
             <button onClick={() => goExplore('south-pole')}><Map size={15} /> GÜNEY KUTBU’NU AÇ</button>
           </div>
           <div className="docs-metrics">
-            <div><strong>7</strong><span>TOPLAM FAZ</span></div>
-            <div><strong>03</strong><span>AKTİF FAZ</span></div>
-            <div><strong>8K</strong><span>LROC GÖRSELİ</span></div>
-            <div><strong>40 m</strong><span>KUTUP DEM KAYNAĞI</span></div>
+            <div><strong>2026–28</strong><span>GEOMETRİ KAPSAMI</span></div>
+            <div><strong>40 m</strong><span>LOLA KAYNAK IZGARASI</span></div>
+            <div><strong>160 m</strong><span>ANA ANALİZ IZGARASI</span></div>
+            <div><strong>1.044</strong><span>HORIZONS AÇI EŞLEŞMESİ</span></div>
           </div>
         </section>
+
+        <ProjectPresentation onMoonAi={goMoonAi} />
 
         <section className="docs-section docs-status-brief">
           <div className="docs-section__index">01 / PROGRAM DURUMU</div>
           <div className="docs-section__heading">
-            <div><h2>Bugün nerede?</h2><p>Temel deneyim hazır; bilimsel karar motorları bilinçli olarak henüz etkin değil.</p></div>
+            <div><h2>Bugün nerede?</h2><p>Görev raporları aday sıralamasını, 3B alçalma modelinin girdilerini ve Monte Carlo sonuçlarını bir araya getirir. Raporları PDF olarak yazdırabilir veya JSON olarak indirebilirsin.</p></div>
             <span className="docs-state active"><i /> GELİŞTİRME AKTİF</span>
           </div>
           <div className="docs-status-grid">
             <article className="complete"><span><Check size={17}/></span><small>PHASE 01</small><h3>Tamamlandı</h3><p>3B Ay, etkileşim, tasarım sistemi, konum dizini ve Güney Kutbu keşif deneyimi üretim ortamında çalışıyor.</p></article>
             <article className="active"><span><Database size={17}/></span><small>PHASE 02</small><h3>Veri çekirdeği hazır</h3><p>NASA LROC ve LOLA verileri işlendi; kaynak izleri, yerel türevler ve gerçek yükselti görselleştirmesi eklendi.</p></article>
-            <article><span><CircleDashed size={17}/></span><small>PHASE 03</small><h3>Zaman ve arazi ufku</h3><p>SPICE ufuk açıları, örneklenmiş kutup arazi profili ve 28 günlük merkez açıklığı eklendi. Tutulma/gölge süreleri bekliyor; Phase 4–7 planlandı.</p></article>
+            <article><span><CircleDashed size={17}/></span><small>PHASE 03</small><h3>Zaman ve arazi ufku</h3><p>SPICE ufuk açıları, örneklenmiş kutup arazi profili ve 28 günlük merkez açıklığı eklendi.</p></article>
           </div>
-          <div className="docs-callout"><ShieldCheck size={18}/><p><strong>Önemli ayrım:</strong> Uygulamadaki ayarlanabilir ışık yüzeyi incelemek içindir; tarih/saat tabanlı Güneş simülasyonu değildir. Sistem bugün iniş güvenliği veya görev uygunluğu kararı üretmez.</p></div>
+          <div className="docs-callout"><ShieldCheck size={18}/><p>Arazi sonuçları 160 m DEM üzerinden bölgesel ön eleme sağlar. Araç ölçeğindeki engeller ve uçuş koşulları için ek veriler gerekir.</p></div>
         </section>
 
         <section className="docs-section" id="delivered">
           <div className="docs-section__index">02 / TESLİM EDİLEN YETENEKLER</div>
-          <div className="docs-section__heading"><div><h2>Şu ana kadar geliştirilenler</h2><p>Phase 1 ve Phase 2 veri atlası kilometre taşının çalışır kapsamı.</p></div></div>
+          <div className="docs-section__heading"><div><h2>Yüzey atlası</h2><p>Küresel keşif, Güney Kutbu görünümü ve kaynak verileri.</p></div></div>
           <div className="docs-capabilities">
             <article><span>01</span><Orbit/><h3>Etkileşimli 3B Ay</h3><p>Sürükleyerek yörünge, yakınlaştırma, koordinat seçimi ve akıcı kamera geçişleriyle gerçek zamanlı küresel keşif.</p></article>
             <article><span>02</span><Layers3/><h3>NASA yüzey katmanları</h3><p>LROC renk mozaiği, LOLA yüzey rölyefi ve −10/+12 km yükselti renk haritası arasında anlık geçiş.</p></article>
@@ -163,8 +185,10 @@ export function DocumentationCenter({ open, onClose, onExplore }: DocumentationC
         <section className="docs-section" id="operations">
           <div className="docs-section__index">04 / OPERASYON KILAVUZU</div>
           <div className="docs-section__heading"><div><h2>Program nasıl kullanılır?</h2><p>Mevcut atlas deneyimi için hızlı görev akışı.</p></div></div>
+          <div className="docs-callout"><Rocket size={18}/><p><strong>İniş Simülasyonu.</strong> Güney Kutbu’nda bir konum seçin ve simülasyonu çalıştırın. Bölgesel görünümde LOLA arazisi, Ay eğriliği, çevredeki kraterler ve sarı hedef halkası yer alır. Temas koordinatlarını ve yükseltiyi sahne altında okuyun. Ay Görevleri ekranında LRO veya LADEE’ye tıklayarak görev kartını açın.</p></div>
+          <div className="docs-callout"><FileCheck2 size={18}/><p><strong>Enerji, radyo ve raporlar.</strong> Saha Karşılaştırması aynı UTC aralığında aydınlanma, batarya, geometrik Dünya görüşü ve radyo marjını gösterir. Artemis saha çalışmaları CSV ve kaynaklı görev raporu olarak kaydedilebilir. Görev Raporları JSON indirmeyi ve PDF olarak yazdırmayı destekler.</p></div>
           <div className="docs-callout"><Map size={18}/><p><strong>Arazi ufku:</strong> Güney Kutbu’nda bir konum seçin ve Time Explorer panelini aşağı kaydırın. Terrain horizon bölümü, 160 m DEM üzerinde 1° yön aralığıyla 100 km’ye kadar tarama yapar. Gözlemci yüksekliğini 2/5/10 m seçebilirsiniz. Güneş/Dünya merkezinin örneklenmiş araziye göre açıklığı gösterilir. Pozitif değer; tüm diskin görünmesi, aydınlanma süresi veya iletişim garantisi değildir. Tarama dışı arazi ve tutulmalar hesaplanmaz.</p></div>
-          <div className="docs-callout"><Sun size={18}/><p><strong>Yeni: Time Explorer.</strong> Üst menüde Güneş simgesine basın. UTC tarihini seçin, −1/+1 gün düğmelerini veya zaman kaydırıcısını kullanın; Play ile zamanı ilerletin. 2026–2027 boyunca seçili koordinatın Güneş ve Dünya merkezlerinin küresel ufka göre açısını okuyun. Küresel Ay ışığı tarihe bağlanır; kutup arazi sahnesi inceleme ışığını korur. Arazi engelleri ve tutulmalar bu hesapta yoktur.</p></div>
+          <div className="docs-callout"><Sun size={18}/><p><strong>Yeni: Time Explorer.</strong> Üst menüde Güneş simgesine basın. UTC tarihini seçin, −1/+1 gün düğmelerini veya zaman kaydırıcısını kullanın; Play ile zamanı ilerletin. 2026–2028 boyunca seçili koordinatın Güneş ve Dünya merkezlerinin küresel ufka göre açısını okuyun. Küresel Ay ışığı tarihe bağlanır; kutup arazi sahnesi inceleme ışığını korur. Arazi engelleri ve tutulmalar bu hesapta yoktur.</p></div>
           <div className="docs-workflow">
             <article><b>1</b><span><strong>Görünümü seç</strong><p>Alt merkezdeki GLOBAL / SOUTH POLE anahtarıyla küresel atlas veya bölgesel arazi moduna geç.</p></span></article>
             <article><b>2</b><span><strong>Yüzeyi gez</strong><p>Fareyle sürükleyerek kamerayı döndür; tekerlekle yakınlaş; yüzeye tıklayarak koordinatı seç.</p></span></article>
@@ -192,7 +216,7 @@ export function DocumentationCenter({ open, onClose, onExplore }: DocumentationC
             <div><small>02 · INGEST</small><strong>Doğrulama hattı</strong><span>Decode · project · checksum</span></div><ChevronRight/>
             <div><small>03 · ATLAS</small><strong>Web türevleri</strong><span>Texture · DEM · metadata</span></div><ChevronRight/>
             <div><small>04 · DİJİTAL İKİZ</small><strong>React + Three.js</strong><span>Scenes · camera · layers</span></div><ChevronRight/>
-            <div><small>05 · GELECEK</small><strong>Analiz servisleri</strong><span>SPICE · risk · reports</span></div>
+            <div><small>05 · ANALİZ</small><strong>Analiz servisleri</strong><span>SPICE · risk · raporlar</span></div>
           </div>
           <div className="docs-architecture-grid">
             <article><small>SUNUM KATMANI</small><h3>React + TypeScript</h3><p>Modüler paneller, durum yönetimi, erişilebilir kontroller ve responsive görev konsolu.</p></article>
@@ -204,14 +228,14 @@ export function DocumentationCenter({ open, onClose, onExplore }: DocumentationC
 
         <section className="docs-section docs-nasa" id="nasa-role">
           <div className="docs-section__index">06 / NASA & ARTEMIS BAĞLAMI</div>
-          <div className="docs-section__heading"><div><h2>NASA projesinde nasıl yer alabilir?</h2><p>ALPHA LUNAR’ın hedefi, resmî sistemlerin yerine geçmek değil; güvenilir veriyi karar veren insan için anlaşılır ve karşılaştırılabilir hâle getirmektir.</p></div></div>
+          <div className="docs-section__heading"><div><h2>Artemis görev incelemeleri</h2><p>Artemis III için 2027 yörünge testi, araç verileri ve görev zaman çizelgesi. IV için 2028 başı, V için 2028 sonu hedefi bulunuyor. IV ve V ekranlarından tarihsel Güney Kutbu bölgelerini karşılaştırabilir ve Zaman Gezgini’ne geçebilirsiniz.</p></div></div>
           <div className="docs-role-flow">
             <span><Database/>KAYNAK VERİ</span><ArrowRight/><span><Layers3/>DİJİTAL İKİZ</span><ArrowRight/><span><Sun/>ANALİZ</span><ArrowRight/><span><Rocket/>SENARYO</span><ArrowRight/><span><FileCheck2/>KARAR RAPORU</span>
           </div>
           <div className="docs-nasa-grid">
             <article><span>01</span><h3>Ön keşif ve brifing</h3><p>Aday bölgeleri tek bir 3B bağlamda incelemek; topoğrafya, adlandırma ve kaynak kanıtını aynı ekranda sunmak.</p></article>
-            <article><span>02</span><h3>Bilimsel veri birleştirme</h3><p>LRO/PDS ürünlerini ileride termal, aydınlatma, iletişim ve kaynak katmanlarıyla ortak koordinat sisteminde buluşturmak.</p></article>
-            <article><span>03</span><h3>Senaryo karşılaştırması</h3><p>Görev ve araç kısıtları eklendiğinde alternatif iniş bölgelerini tutarlı ölçütler ve açık belirsizliklerle karşılaştırmak.</p></article>
+            <article><span>02</span><h3>Bilimsel veri birleştirme</h3><p>LOLA, Diviner ve SPICE; yükseklik, termal koşullar ve gök cismi geometrisini ortak Ay koordinatlarında buluşturur.</p></article>
+            <article><span>03</span><h3>Senaryo karşılaştırması</h3><p>Haworth, Mons Mouton ve Nobile Rim 2 tarihsel çalışma bölgeleridir. Raporlar yayımlanmış görev planını, model sonuçlarını ve çalışma varsayımlarını ayrı etiketler.</p></article>
             <article><span>04</span><h3>Eğitim ve paydaş iletişimi</h3><p>Karmaşık kutup geometrisini araştırmacı, mühendis, yönetici ve kamu için aynı görsel dilde açıklamak.</p></article>
           </div>
           <div className="docs-official-note"><ShieldCheck/><div><strong>Bağımsız araştırma ve görselleştirme platformu</strong><p>ALPHA LUNAR şu anda NASA tarafından onaylanmış, uçuşa uygun, emniyet-kritik veya operasyonel bir sistem değildir. Bir NASA iş akışına alınması; veri doğrulama, model V&V, siber güvenlik, erişilebilirlik, yapılandırma yönetimi ve yetkili teknik incelemeler gerektirir.</p></div></div>
@@ -226,13 +250,17 @@ export function DocumentationCenter({ open, onClose, onExplore }: DocumentationC
             <div><span>LOLA yükselti</span><span className="ready">ENTEGRE</span><span>Ölçümlerden ızgaralanmış/interpole edilmiş topografya; web türevleri yeniden örneklenmiştir.</span></div>
             <div><span>Güney Kutbu arazi</span><span className="ready">ENTEGRE</span><span>40 m kaynak üründen 160 m raster ve yaklaşık 474 m mesh aralığıyla tarayıcıya uyarlanır.</span></div>
             <div><span>Inspection Light</span><span className="visual">GÖRSEL</span><span>Yüzey biçimini okumaya yardım eder; astronomik tarih/saat hesabı değildir.</span></div>
-            <div><span>İniş güvenliği</span><span className="inactive">ETKİN DEĞİL</span><span>Eğim/pürüzlülük eşikleri ve görev kısıtları eklenmeden karar üretmez.</span></div>
-            <div><span>Su buzu / termal / iletişim</span><span className="inactive">PLANLANDI</span><span>Kaynak ürün ve belirsizlik modeli doğrulandıktan sonra ayrı katmanlar olarak eklenecek.</span></div>
+            <div><span>Arazi ön elemesi</span><span className="ready">ETKİN</span><span>Eğim ve RMS pürüzlülük eşikleri; araç ölçeğinde engeller kapsam dışı.</span></div>
+            <div><span>Su buzu ve termal</span><span className="ready">ETKİN</span><span>Diviner klimatolojisi, LOLA kalıcı gölge modeli ve Cabeus LCROSS gözlemi.</span></div>
+            <div><span>Dünya haberleşmesi</span><span className="ready">ETKİN</span><span>Earth Communication, örneklenmiş merkez açıklığını ve ayarlanabilir serbest uzay bağlantı bütçesini birlikte gösterir.</span></div>
+            <div><span>Bölgesel arazi ayrıntısı</span><span className="ready">ETKİN</span><span>Üç NASA LOLA bölgesinde 80 m ve 20 m kademeli görünüm ile eş çözünürlüklü doğrulama.</span></div>
           </div>
         </section>
 
+        <ExternalValidation />
+
         <section className="docs-section" id="glossary">
-          <div className="docs-section__index">08 / TERİMLER & KAYNAKLAR</div>
+          <div className="docs-section__index">09 / TERİMLER & KAYNAKLAR</div>
           <div className="docs-section__heading"><div><h2>Teknik sözlük</h2><p>Platformda sık kullanılan kavramların kısa açıklaması.</p></div></div>
           <div className="docs-glossary">{glossary.map(([term, meaning]) => <div key={term}><strong>{term}</strong><p>{meaning}</p></div>)}</div>
           <div className="docs-sources">
@@ -247,7 +275,7 @@ export function DocumentationCenter({ open, onClose, onExplore }: DocumentationC
 
         <footer className="docs-footer">
           <div><BookOpen/><span><strong>ALPHA LUNAR</strong><small>Advanced Lunar Digital Twin & Mission Intelligence</small></span></div>
-          <p>13 Kasım 2026<br/>Phase 3 / SPICE Time Explorer</p>
+          <p>15 Kasım 2026<br/>Space Apps proje sunumu</p>
           <button onClick={() => goExplore('global')}>ATLASA DÖN <ArrowRight size={14}/></button>
         </footer>
       </main>

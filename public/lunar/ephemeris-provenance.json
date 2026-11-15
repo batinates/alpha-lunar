@@ -22,9 +22,9 @@
   "frame": "MOON_ME_DE421",
   "correction": "geometric NONE; no light time or aberration",
   "coverageStart": "2026-01-01T00:00:00+00:00",
-  "coverageEnd": "2028-01-01T00:00:00+00:00",
+  "coverageEnd": "2029-01-01T00:00:00+00:00",
   "stepSeconds": 3600,
   "validation": "Every interval midpoint compared with direct SPICE; angular error only, not a certified mission accuracy bound.",
   "maxMidpointAngularErrorDeg": 0.00013360240947641328,
-  "sha256": "a55153a67002f6d5c10497f8a95ce2e011115e58e20ba353a4fd5838ddaac94b"
+  "sha256": "19d0160c73d067655f233ed1a1440294f67260435f281669d28310fa103894c0"
 }

@@ -17,17 +17,23 @@ export function terrainElevationAngle(observerHeight:number,targetHeight:number,
   const d=distance/R, radius=R+targetHeight
   return Math.atan2(radius*Math.cos(d)-(R+observerHeight),radius*Math.sin(d))/DEG
 }
-export function buildHorizon(latitude:number,longitude:number,mastHeight:number,sample:(lat:number,lon:number)=>number|null):HorizonProfile {
-  if(!Number.isFinite(latitude)||latitude < -90||latitude > -85||!Number.isFinite(longitude)||!Number.isFinite(mastHeight)||mastHeight<0||mastHeight>100)throw new Error('Invalid polar observer')
-  const surface=sample(latitude,longitude)
+export function buildHorizon(latitude:number,longitude:number,mastHeight:number,sample:(lat:number,lon:number)=>number|null, stepMeters = 160,
+  near?: { radiusMeters: number; sample: typeof sample }, radiusMeters = 100000):HorizonProfile {
+  const supported = radiusMeters === 100000 ? latitude >= -90 && latitude <= -85 : Math.abs(latitude) >= 75 && Math.abs(latitude) <= 90
+  if(!supported||!Number.isFinite(longitude)||!Number.isFinite(mastHeight)||mastHeight<0||mastHeight>100)throw new Error('Invalid polar observer')
+  const surface=near?.sample(latitude,longitude) ?? sample(latitude,longitude)
   if(surface===null||!Number.isFinite(surface))throw new Error('Observer outside DEM coverage')
-  const stepMeters=160,radiusMeters=100000,elevations:number[]=[],distances:number[]=[]
+  if (!Number.isFinite(stepMeters) || stepMeters < 160 || stepMeters > 1000) throw new Error('Invalid horizon sampling step')
+  if (![100000, 150000, 300000].includes(radiusMeters)) throw new Error('Invalid horizon radius')
+  const elevations:number[]=[],distances:number[]=[]
   for(let az=0;az<360;az++){
     let angle=-90,range=0
-    for(let d=stepMeters;d<=radiusMeters;d+=stepMeters){
-      const p=destination(latitude,longitude,az,d),h=sample(p.latitude,p.longitude)
+    for(let d=near ? 20 : stepMeters;;d=Math.min(radiusMeters,d+(near && d < near.radiusMeters ? 20 : stepMeters))){
+      const p=destination(latitude,longitude,az,d)
+      const h=(near && d <= near.radiusMeters ? near.sample(p.latitude,p.longitude) : null) ?? sample(p.latitude,p.longitude)
       if(h===null||!Number.isFinite(h))break
       angle=Math.max(angle,terrainElevationAngle(surface+mastHeight,h,d));range=d
+      if(d===radiusMeters)break
     }
     elevations.push(range===0?NaN:angle);distances.push(range)
   }

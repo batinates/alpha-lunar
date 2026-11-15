@@ -1,0 +1,25 @@
+{
+  "frame": "MOON_ME_DE421",
+  "hemispheres": {
+    "s": {
+      "file": "pole-s-480m.i16",
+      "width": 1906,
+      "spacingMeters": 480,
+      "source": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/polar/img/ldem_75s_240m.img",
+      "label": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/polar/img/ldem_75s_240m.lbl",
+      "sourceSha256": "d031efe2611b17dfbf3c158f5e15dc04cd5719349dcbf6384bb21fd97697c490",
+      "labelSha256": "ec07239f41d8abc1a3681495b5799b770c7206b5268b76721d69180df0422e02",
+      "sha256": "60e1c327b26067fa7fbfe3c2f06c70e1d3c796a923598ceb38dccb7d940eab26"
+    },
+    "n": {
+      "file": "pole-n-480m.i16",
+      "width": 1906,
+      "spacingMeters": 480,
+      "source": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/polar/img/ldem_75n_240m.img",
+      "label": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/data/lola_gdr/polar/img/ldem_75n_240m.lbl",
+      "sourceSha256": "c63d22385f182f276dd90adb7755e3070e725c3cd50b6d0d20d76a94edbba41b",
+      "labelSha256": "0186c1953167d57fb39be070b1c579d3a7595655d5f8f5e8dbc5414d9f18eb87",
+      "sha256": "5eccb3f9eb254ff4734d3b4134dec00bf82bb7c50a5ec5fe2ea715e149adf93b"
+    }
+  }
+}

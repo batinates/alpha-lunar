@@ -1,0 +1,70 @@
+.artemis-dialog {
+  width: min(820px, calc(100% - 28px));
+}
+
+.artemis-kicker {
+  color: var(--cyan);
+  font: 500 10px var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.artemis-details h3 {
+  margin: 0 0 9px;
+  color: #e5edf1;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.artemis-details .artemis-links + h3 {
+  margin-top: 20px;
+}
+
+.artemis-specs {
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+
+.artemis-specs div {
+  display: grid;
+  grid-template-columns: minmax(100px, .8fr) minmax(0, 1.2fr);
+  align-items: baseline;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.artemis-specs dt {
+  color: #a3b9c5;
+  font-size: 12px;
+}
+
+.artemis-specs dd {
+  margin: 0;
+  color: #e5f6fa;
+  text-align: right;
+  font: 500 12px/1.45 var(--mono);
+}
+
+.artemis-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 15px;
+  font-size: 12px;
+}
+
+.artemis-context {
+  margin-top: 19px;
+  padding-top: 15px;
+  border-top: 1px solid var(--line);
+}
+
+.artemis-context .analysis-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.artemis-timeline { display: grid; gap: 10px; padding-inline-start: 25px; }
+.artemis-timeline li::marker { color: var(--cyan); }
+.artemis-timeline li p { margin: 3px 0 0; }

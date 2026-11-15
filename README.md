@@ -1,14 +1,42 @@
 # ALPHA LUNAR — Lunar Surface Atlas
 
-## Current milestone: Phase 3
+[Live application](https://alphaspace.com.tr/) · [Short project presentation](https://alphaspace.com.tr/sunum)
 
-The current application includes the SPICE Time Explorer (2026–2027 UTC), Sun/Earth geometric angles, date-driven global lighting, and a worker-based regional terrain horizon for locations south of 85°S. Choose a 2/5/10 m observer height and inspect the 28-day sampled center-clearance summary. See [Phase 3 methods and limits](docs/PHASE_3.md) and the [Turkish project report](docs/PROJECT_REPORT_TR.md).
+See the updated [Turkish project handbook](docs/PROJECT_REPORT_TR.md). The upper-right TR/EN buttons set the application language. Landing Simulation uses the South Pole atlas material, normal map, and inspection light.
 
-All runtime assets are included in `public/lunar`; cloning this repository is sufficient to build and run the application. Original NASA raster files and SPICE kernels are attached to the GitHub release `phase3-horizon-v1` as `alpha-lunar-source-data.tar.gz`. Extract it at the project root to restore `data-source/` and `.cache/spice/`. Their individual source URLs and checksums are recorded in the lunar and ephemeris provenance manifests. The release also contains a prebuilt static site archive.
+## Current milestone: Phase 7
+
+**Landing Site Archive** lists imported landing records and candidate regions. It loads site-specific hourly geometry and 2 m horizon profiles on demand. See [archive scope, provenance and validation](docs/LANDING_SITE_ARCHIVE.md).
+
+**Mission Overview** brings together the active profile and planning tools. **Earth Communication** shows Earth-center geometry, a configurable one-way radio budget and hourly screening windows. **Regional Terrain Detail** progressively loads 80 m and 20 m LOLA relief for Connecting Ridge, Shackleton Rim and de Gerlache Rim. See [regional terrain and link screening](docs/REGIONAL_OPERATIONS.md).
+
+**Surface Power** estimates panel generation, battery charge and energy deficits from the visible fraction of the Sun. Use a regional study center, a selected polar map point, or open **Estimate surface power** on an optimized arrival. See [power model and coverage](docs/SURFACE_POWER.md).
+
+**Documentation → Bilimsel doğrulama** compares directions against JPL Horizons and long-term visibility against NASA PGDA, with downloadable evidence. See [external validation methods and results](docs/EXTERNAL_VALIDATION.md).
+
+**Site Comparison** compares two or three landing sites on one UTC timeline with shared power and radio assumptions. Launch it from Mission Overview, the sidebar or a Landing Optimization search. See [comparison workflow](docs/SITE_COMPARISON.md).
+
+**Earth Communication → DSN stations** screens direct links to Goldstone DSS-14, Madrid DSS-63 and Canberra DSS-43 with individual windows, margins and a 10-minute CSV. See [regional operations](docs/REGIONAL_OPERATIONS.md).
+
+Create a report from **Landing Optimization** or the descent lab. **Mission Reports** keeps snapshots in this browser and exports a print-ready PDF view and JSON including data checksums. See [Phase 7 reporting and validation](docs/PHASE_7.md).
+
+**Landing Simulation** replays a parameterized approach on the South Pole DEM. **Risk Assessment** compares three reproducible Monte Carlo cases and shows a risk register. Open **Simulate descent** on a Phase 5 result to carry its vehicle, UTC and environmental screening into the lab. See [Phase 6 methods](docs/PHASE_6.md).
+
+Use **Mission Configuration** to edit and save mission and spacecraft profiles, including an Artemis crewed study template. **Landing Optimization** screens South Pole sites and UTC arrivals, ranks options by mission priority, and sends a selected arrival back to the map and Time Explorer. See [Phase 5 methods](docs/PHASE_5.md).
+
+South Pole Command now includes LOLA slope and roughness screening, Diviner-derived thermal summaries and a water ice view with modeled cold traps, modeled permanent shadow and the LCROSS observation at Cabeus. Select a module in the left rail and pick a point on the terrain. The analysis panels show spatial coverage, source sampling and interpretation limits. See [Phase 4 methods and regeneration](docs/PHASE_4.md).
+
+The current application includes the SPICE Time Explorer (2026–2028 UTC), Sun/Earth geometric angles, date-driven global lighting, and a worker-based regional terrain horizon for locations south of 85°S. Choose a 2/5/10 m observer height and inspect the 28-day sampled center-clearance summary. See [Phase 3 methods and limits](docs/PHASE_3.md) and the [Turkish project report](docs/PROJECT_REPORT_TR.md).
+
+Under **Mission Systems → Artemis Launch System**, select Artemis III for vehicle data and the published launch and docking plan, or select IV or V for an editable 72-hour comparison of historical South Pole study areas. Reports record the NASA plan, site data, modeling inputs, and the distinction between geometric Earth visibility and radio-link limits.
+
+The web assets required to build and run the application are included under `public/`. The [Phase 3 release](https://github.com/batinates/alpha-lunar/releases/tag/phase3-horizon-v1) also includes the original data used for that milestone. To regenerate the current data, use the source URLs and checksums in the lunar and ephemeris provenance manifests. Store raw inputs in the ignored `data-source/` and `.cache/spice/` directories.
+
+See [Moon AI setup](docs/MOON_AI.md) for the optional Claude connection. Create a local environment file using `.env.example` as the template.
 
 Install JavaScript dependencies with `pnpm install --frozen-lockfile`. Optional data regeneration uses Python with `Pillow`, `numpy` and `spiceypy`. Run `python scripts/ingest_lunar.py` and `python scripts/ingest_ephemeris.py` to rebuild the datasets. Dependencies, build caches and credentials are not stored in Git.
 
-The sections below describe the original surface-atlas foundation; Phase 3 additions and limitations are documented above.
+The sections below describe the original surface-atlas foundation. The milestone notes above describe subsequent analysis features.
 
 ALPHA LUNAR is an interactive lunar exploration application and the foundation for a future scientific digital twin and mission-intelligence platform.
 
@@ -25,14 +53,12 @@ Phase 1 established the React/TypeScript application, dark aerospace interface, 
 - Adjustable inspection lighting and regional vertical scale of 1×, 2×, or 3×
 - Data-status panel, source links, original PDS product label, and a checksum manifest
 
-Inspection lighting is a rendering control, not a date-dependent Sun calculation. Elevation colors and legend limits are display choices, not a hazard classification. The application does not calculate landing suitability, hazards, resource probability, temperature, or communication windows.
+The inspection light remains a rendering control. The Time Explorer uses SPICE for date-dependent geometry. Terrain Intelligence screens sampled regional terrain against entered limits. Flight validation and radio-link availability require additional data and models.
 
 ## Run locally
 
-Prerequisites: Node.js 24+ and pnpm 11.25.0 (the version in `packageManager`). GitHub Actions installs this version and runs the frozen-lockfile install, all tests and the production build for every main-branch push and pull request.
-
 ```bash
-pnpm install --frozen-lockfile
+pnpm install
 pnpm dev
 ```
 
@@ -66,7 +92,6 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for coordinate conventions, res
 
 ## Next development stages
 
-1. Add spatially tiled elevation products, progressive loading, and camera-dependent terrain LOD to retain more source detail near selected landmarks.
-2. Validate datum alignment, interpolation behavior, and regional geometry against independent reference products; expose coverage and uncertainty at the sample level.
-3. Add higher-resolution regional imagery and DEM products with product-specific provenance.
-4. Begin ephemeris, terrain-shadow, and Earth-visibility work after validating the required coordinate and time systems.
+1. Extend progressive terrain coverage beyond the three available sites, and align regional imagery to those DEMs.
+2. Use independent measurements to validate regional geometry and quantify uncertainty at vehicle scales.
+3. Add station-specific and relay ephemerides, finite-disk visibility and mission-specific link validation.

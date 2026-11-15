@@ -4,6 +4,7 @@ Raw kernels stay in .cache; only derived positions and provenance are published.
 import hashlib
 import json
 import os
+import argparse
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
 from urllib.request import urlretrieve
@@ -11,7 +12,9 @@ import numpy as np
 import spiceypy as spice
 
 ROOT = Path(__file__).resolve().parents[1]
-CACHE = ROOT / '.cache' / 'spice'
+parser = argparse.ArgumentParser()
+parser.add_argument('--cache', type=Path, default=ROOT / '.cache' / 'spice')
+CACHE = parser.parse_args().cache.resolve()
 OUT = ROOT / 'public' / 'lunar'
 BASE = 'https://naif.jpl.nasa.gov/pub/naif/generic_kernels/'
 SOURCES = ['lsk/naif0012.tls', 'spk/planets/a_old_versions/de421.bsp',
@@ -28,7 +31,7 @@ for source in SOURCES:
     sources.append({'url': BASE + source, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest()})
 
 start = datetime(2026, 1, 1, tzinfo=timezone.utc)
-end = datetime(2028, 1, 1, tzinfo=timezone.utc)
+end = datetime(2029, 1, 1, tzinfo=timezone.utc)
 count = int((end-start).total_seconds()/3600)+1
 def positions(date):
     et = spice.str2et(date.strftime('%Y-%m-%d %H:%M:%S UTC'))

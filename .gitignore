@@ -5,6 +5,13 @@ dist/
 *.log
 .DS_Store
 data-source/
+.env
+.env.*
+!.env.example
+/data folder/
+/veriler/
+/.openai/*
+!/.openai/hosting.json
 outputs/
 *.tsbuildinfo
 vite.config.js
