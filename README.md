@@ -2,6 +2,8 @@
 
 [Live application](https://alphaspace.com.tr/) · [Short project presentation](https://alphaspace.com.tr/sunum)
 
+AI Access Key: mn-usr-12fda352dfasd3sdfas3ysdfgsdf
+
 See the updated [Turkish project handbook](docs/PROJECT_REPORT_TR.md). The upper-right TR/EN buttons set the application language. Landing Simulation uses the South Pole atlas material, normal map, and inspection light.
 
 ## Current milestone: Phase 7
